@@ -1,0 +1,26 @@
+[
+    {   
+        "id": 1,
+        "programName": "Cosmetology",
+        "hours": 1000,
+        "isActive": "yes"
+    }, 
+    {
+        "id": 2,
+        "programName": "HHA-Chi",
+        "hours": 1000,
+        "isActive": "yes"
+    }, 
+    {
+        "id": 3,
+        "programName": "HHA-Eng",
+        "hours": 55,
+        "isActive": "yes"
+    },
+    {
+        "id": 4,
+        "programName": "PCA-Chi",
+        "hours": 25,
+        "isActive": "yes"
+    }
+]
