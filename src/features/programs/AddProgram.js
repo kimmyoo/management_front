@@ -162,7 +162,7 @@ const AddProgram = () => {
                 name='isActive'
                 type="radio"
                 value="true"
-                checked="checked"
+                checked={program.isActive === true}
                 onChange={handleRadioChange}
               />
               Active
@@ -173,6 +173,7 @@ const AddProgram = () => {
                 name='isActive'
                 type="radio"
                 value="false"
+                checked={program.isActive === false}
                 onChange={handleRadioChange}
               />
               Inactive

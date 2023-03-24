@@ -220,7 +220,6 @@ a:hover {
   flex-wrap: wrap;
   width: 100%;
   gap: 20px 5px;
-
 }
 
 
@@ -320,10 +319,9 @@ a:hover {
 } */
 
 
-
 /* forms */
 .form-wrapper{
-    width: 70%;
+    width: 80%;
     height: auto;
     margin: 0 auto;
     padding: 30px;

@@ -34,8 +34,8 @@ const InstructorList = () => {
             {selectedInstructor && (
                 <div>
                     <h3>{selectedInstructor.name}</h3>
-                    <p>Phone: {selectedInstructor.tel}</p>
-                    <p>email: {selectedInstructor.email}</p>
+                    <p>Phone: <a href={`tel:${selectedInstructor.tel}`}>{selectedInstructor.tel}</a></p>
+                    <p>email: <a href={`mailto:${selectedInstructor.email}`}>Send Email</a></p>
                     <p>Address: {selectedInstructor.address}</p>
                 </div>
             )}
