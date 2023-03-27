@@ -21,8 +21,8 @@ const AddProgram = () => {
     const [formErrors, setFormErrors] = useState({});
 
     // handleSubmit
-    const handleSubmit = (event) => {
-      event.preventDefault();
+    const handleSubmit = (e) => {
+      e.preventDefault();
 
       if (!preValidate()){
         return  

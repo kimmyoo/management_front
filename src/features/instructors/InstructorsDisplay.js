@@ -1,8 +1,7 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback} from 'react';
 import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-
 
 
 
@@ -10,11 +9,12 @@ const InstructorsDisplay = ({instructors, programs}) => {
     const [selectedInstructor, setSelectedInstructor] = useState(null);
     const [displayInstructors, setDisplayInstructors] =useState([])
     const [selectedOption, setSelectedOption] = useState('default')
-    
-    useEffect(() => {
-        let filteredInstructors
+
+
+    const filterInstructorsByProgram = useCallback(() => {
         const programId = selectedOption
-        filteredInstructors = instructors.filter(instructor => {
+        // console.log(programId)
+        const res = instructors.filter(instructor => {
             // if the instructor does have at least one license
             if (instructor.licenses.length > 0){
                 // array.some() returns boolean val
@@ -22,33 +22,41 @@ const InstructorsDisplay = ({instructors, programs}) => {
             }
             return false // if no license, don't add him/her to filteredInstructors
         })
+        return res
+    }, [instructors, selectedOption])
+
+
+    useEffect(() => {
+        let filteredInstructors
+        filteredInstructors = filterInstructorsByProgram()
         // check to see current selected option and set state accordingly
         if (selectedOption === 'default'){
             setDisplayInstructors(instructors)
         }else{
             setDisplayInstructors(filteredInstructors)
         }
-        
-    }, [instructors, selectedOption])
+    }, [instructors, selectedOption, filterInstructorsByProgram])
 
+    // select a specific instructor
     const handleClick = (instructor) => {
         setSelectedInstructor(instructor);
     }
 
+    // select an option
     const handleSelectChange = (e) => {
         setSelectedOption(e.target.value)
-        console.log(selectedOption)
     }
 
+    // define content to render
     const content = (
         <div className="instructor-list-container">
             <div className='instructor-left'>
             <h2>Instructors</h2> 
             <Link to="add">Add a New Instructor</Link>
-            <p><label htmlFor="programFilter">Filter by Program</label></p>
+            <p><label htmlFor="programFilter">Filter by Program: </label>
             <select name="programs" id="programs" value={selectedOption} onChange = {handleSelectChange} >
                 <option value="default">All Instructors</option>
-                {
+                {   //populate programs into option tags
                     programs.map(program => (
                         <option 
                             key={nanoid()}
@@ -59,6 +67,7 @@ const InstructorsDisplay = ({instructors, programs}) => {
                     ))
                 }
             </select>
+            </p>
             <ul>
                 {
                     displayInstructors.length !== 0? displayInstructors.map(instructor => (
@@ -72,7 +81,7 @@ const InstructorsDisplay = ({instructors, programs}) => {
 
             <div className='instructor-right'>
             {selectedInstructor && (
-                <div>
+                <>
                     <h3>Instructor: {selectedInstructor.name}</h3>
                     {/* passing state props through Link */}
                     <Link to="edit" state={selectedInstructor}>Edit Instructor</Link>&emsp;
@@ -95,7 +104,7 @@ const InstructorsDisplay = ({instructors, programs}) => {
                             ))
                             }
                         </div>}
-                </div>
+                </>
             )}
             {!selectedInstructor&& <h3>Click on Teacher buttons to view, edit the instructor</h3> }
             </div>

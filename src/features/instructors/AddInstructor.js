@@ -66,7 +66,7 @@ const AddInstructor = () => {
         setInstructor({
           ...instructor,
           [name]: value
-        });
+        })
     };
 
 
@@ -79,6 +79,7 @@ const AddInstructor = () => {
             <label>
               Instructor Name(*):
               {formErrors.name && <p className="error">{formErrors.name}</p>}
+            </label>
               <input
                 name="name"
                 type="text"
@@ -86,10 +87,11 @@ const AddInstructor = () => {
                 placeholder="Last Name, First Name"
                 onChange={handleInputChange}
               />
-            </label>
+            
             <label>
               Phone Number(*):
               {formErrors.tel && <p className="error">{formErrors.tel}</p>}
+            </label>
               <input
                 name="tel"
                 type="text"
@@ -97,31 +99,36 @@ const AddInstructor = () => {
                 placeholder="888-888-8888"
                 onChange={handleInputChange}
               />
-            </label>
+            
             <label>
               Email(optional):
               {formErrors.email && <p className="error">{formErrors.email}</p>}
+            </label>
               <input
                 name="email"
                 type="text"
                 value={instructor.email}
                 onChange={handleInputChange}
               />
-            </label>
+            
             <label>
               Address(optional):
               {formErrors.address && <p className="error">{formErrors.address}</p>}
+            </label>
               <input
                 name="address"
                 type="text"
                 value={instructor.address}
                 onChange={handleInputChange}
               />
-            </label>
-            {formErrors.backendErrors&&
+            
+            {
+              formErrors.backendErrors&&
               <div className="error">
                 {formErrors.backendErrors.map(error => (<p key={nanoid()}>{error}</p>))}
-              </div>}
+              </div>
+            }
+
             <p><button type="submit" onClick={handleSubmit}>Submit</button></p>
           </form>
         </div>
