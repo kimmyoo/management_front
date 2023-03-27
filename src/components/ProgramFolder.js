@@ -11,11 +11,11 @@ const ProgramFolder = ({program, programClassList}) => {
         programInfo = (
             <>  
                 <p>Program Code: {program.programCode}</p>
-                <p>Program Name:{program.programName}</p>
                 <p>Length:{`${program.length} hrs`}</p>
                 <p>Cost: {`$ ${program.cost}`}</p>
                 <p>isActive:{program.isActive? "Yes" : "No"}</p>
                 <p>Expires on: {program.expiresAt}</p>
+                <p>Edit</p>
             </>
         )
     }

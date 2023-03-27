@@ -64,17 +64,16 @@ body {
   min-height: 100vh;
   background-color: var(--BGCOLOR);
   color: var(--COLOR);
-  /* background-image: url('./img/background.jpg'); */
   background-size: cover;
   background-position: top right;
   background-blend-mode: multiply;
 }
 
 input,
-button,
 textarea,
 select {
   font: inherit;
+  background-color : #d1d1d1; 
 }
 
 #root {
@@ -83,22 +82,6 @@ select {
   display: flex;
   flex-flow: column nowrap;
 }
-
-a {
-  text-decoration: none;
-}
-
-a,
-a:visited {
-  color: var(--LINK-COLOR);
-}
-
-a:hover,
-a:focus-visible {
-  color: var(--LINK-HOVER);
-}
-
-/* || PAGES */
 
 .public,
 .welcome {
@@ -185,6 +168,7 @@ a:focus-visible {
   text-align: right;
 }
 
+
 /* my own css */
 ul {
     list-style: none;
@@ -215,6 +199,38 @@ a:hover {
   color: rgb(0, 195, 255);
 }
 
+/* animation */
+h3{
+  color: rgb(182, 199, 105);
+}
+a::before {  
+  transform: scaleX(0);
+  transform-origin: bottom right;
+}
+
+a:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+a::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  inset: 0 0 0 0;
+  background: hsl(72, 100%, 80%);
+  z-index: -1;
+  transition: transform .7s ease;
+}
+
+a {
+  position: relative;
+  font-size: 1rem;
+  font-weight: bold;
+  color: rgb(194, 135, 72);
+}
+
 .program-list-wrapper{
   display: flex;
   flex-wrap: wrap;
@@ -234,6 +250,7 @@ a:hover {
   width: 100%;
   gap: 20px 5px;
   margin-top: 20px;
+  
 }
 
 .program-folder{
@@ -270,32 +287,19 @@ a:hover {
 
 
 /* buttons */
+
 .button-paper {
   align-self: center;
-  background-color: #6fb9eb;
+  background-color: #4d8cc7;
   background-image: none;
-  background-position: 0 90%;
   background-repeat: repeat no-repeat;
   background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-  box-sizing: border-box;
-  color: #000000f0;
   cursor: pointer;
-  display: inline-block;
-  font-family: Neucha, sans-serif;
   font-size: .8rem;
   line-height: 15px;
-  outline: none;
-  padding: .3rem;
+  padding: .2rem;
   text-decoration: none;
-  transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
+  transition: all .2s ease-in-out;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -310,22 +314,15 @@ a:hover {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
-/* .content-wrapper{
-    width: 70%;
-    height: auto;
-    margin: 0 auto;
-    padding: 30px;
-    position: relative;
-} */
-
 
 /* forms */
 .form-wrapper{
-    width: 80%;
+    width: 100%;
     height: auto;
     margin: 0 auto;
     padding: 30px;
     position: relative;
+    
 }
 
 .form-wrapper .error{
@@ -356,4 +353,33 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.instructor-list-container{
+    margin-top: 2px;
+    width: 100%;
+    height: 600px;
+    /* border: solid 1px #ffffff; */
+    /* overflow: hidden;  */
+}
+
+.instructor-left{
+    /* padding: 2px; */
+    width: 50%;
+    height: auto;
+    float: left; /* add this */
+    display: block;
+    /* border: 1px solid rgb(255, 255, 255); */
+    /* border-style: dotted; */
+}
+
+.instructor-right{
+    font-size: 1.2em;
+    /* font-family:Georgia, 'Times New Roman', Times, serif; */
+    padding: 10px;
+    width: 50%;
+    height: 600px;
+    float: left; /* add this */
+    border: 1px solid rgb(250, 252, 255);
+    /* background-color:  rgba(255, 255, 255, 0.499); */
 }

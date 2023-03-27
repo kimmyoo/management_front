@@ -14,6 +14,7 @@ const AddProgram = () => {
       length:'',
       cost:'',
       expiresAt:'',
+      licenses: [],
       isActive: true
     });
 
@@ -150,7 +151,7 @@ const AddProgram = () => {
                 type="text"
                 value={program.expiresAt}
                 onChange={handleInputChange}
-                placeholder="YYYY-MM-DD"
+                placeholder="Format: YYYY-MM-DD"
               />
               {formErrors.cost && <p>{formErrors.expiresAt}</p>}
             </label>

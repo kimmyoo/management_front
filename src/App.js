@@ -8,8 +8,10 @@ import ProgramList from './features/programs/ProgramList';
 import AllProgramList from './features/archieves/AllProgramList';
 import AddProgram from './features/programs/AddProgram';
 import InstructorList from './features/instructors/InstructorList';
-
-
+import AddInstructor from './features/instructors/AddInstructor';
+import EditInstructor from './features/instructors/EditInstructor';
+import AddInstructorLicense from './features/instructors/AddInstructorLicense';
+import ScheduleClass from './features/instructors/ScheduleClass';
 function App() {
   return (
     <Routes>
@@ -27,7 +29,10 @@ function App() {
 
           <Route path="instructors">
             <Route index element={<InstructorList />} />
-            {/* <Route path="add" element={<AddProgram />} /> */}
+            <Route path="add" element={<AddInstructor />} />
+            <Route path="edit" element={<EditInstructor />} />
+            <Route path="add-license" element={<AddInstructorLicense />} />
+            <Route path="schedule" element={<ScheduleClass />} />
           </Route>
 
           <Route path="archives" element={<AllProgramList />} />
