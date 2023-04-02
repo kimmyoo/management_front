@@ -325,7 +325,7 @@ a {
     margin: 0 auto;
     padding: 30px;
     position: relative;
-    
+    position: relative;
 }
 
 .form-wrapper .error{
@@ -333,33 +333,49 @@ a {
 }
 
 .form-container {
+  width: 75%;
   border-radius: 5px;
   padding: 10px;
+  display: inline block;
+  position: relative;
+  margin: 0 auto;
 }
 
-input[type=text] {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+select{
+  width: 60%;
+  padding: .2em 1em;
+  margin: 5px 20px;
   display: block;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
-select{
-  width: 35%;
-  padding: 2px 4px;
-  margin: 8px 0;
-  display: inline-block;
+
+input[type=text]{
+  width: 95%;
+  padding: .2em 1em;
+  margin: 5px 20px;
+  display: block;
   border: 1px solid #ccc;
   border-radius: 6px;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
+
+input[type=date]{
+  width: 95%;
+  padding: .2em 1em;
+  margin: 5px 20px;
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
 
 input[type=submit] {
   width: 100%;
-  background-color: #04AA6D;
+  /* background-color: #a97e2d; */
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -376,6 +392,7 @@ input[type=submit] {
 
 .instructor-left{
     /* padding: 5px; */
+    padding: .5em 1em;
     width: 55%;
     height: 600px;
     float: left; /* add this */
@@ -385,9 +402,10 @@ input[type=submit] {
 }
 
 .instructor-right{
+    padding: .5em 1em;
     font-size: 1.2em;
     /* font-family:Georgia, 'Times New Roman', Times, serif; */
-    padding: 10px;
+
     width: 45%;
     height: 600px;
     float: left; /* add this */

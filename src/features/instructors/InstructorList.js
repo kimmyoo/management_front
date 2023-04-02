@@ -10,7 +10,7 @@ const InstructorList = () => {
         // fetching programs and instructors
         Promise.all([
             axiosBaseURL.get('/programs/'),
-            axiosBaseURL.get('/instructors')
+            axiosBaseURL.get('/instructors/')
         ])
         .then(response => {
             setPrograms(response[0].data)

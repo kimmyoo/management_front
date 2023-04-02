@@ -35,7 +35,7 @@ const ProgramList = () => {
                  </p>
             </div>
             <div className='all-programs-wrapper'>   
-                {folders}
+                {folders.length>0 ? folders : <p>No Data passed in</p>}
             </div>
         </div>
     )

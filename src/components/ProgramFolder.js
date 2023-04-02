@@ -15,6 +15,9 @@ const ProgramFolder = ({program, programClassList}) => {
                 <p>Cost: {`$ ${program.cost}`}</p>
                 <p>isActive:{program.isActive? "Yes" : "No"}</p>
                 <p>Expires on: {program.expiresAt}</p>
+                {/* <p>{program.licenses.map(license => (
+                    <p>{license.licNum}</p>
+                ))}</p> */}
                 <p>Edit</p>
             </>
         )

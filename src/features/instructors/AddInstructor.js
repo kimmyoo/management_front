@@ -65,7 +65,7 @@ const AddInstructor = () => {
         const {name, value} = e.target;
         setInstructor({
           ...instructor,
-          [name]: value
+          [name]: value.trim()
         })
     };
 
@@ -83,7 +83,7 @@ const AddInstructor = () => {
               <input
                 name="name"
                 type="text"
-                value={instructor.name}
+                // value={instructor.name} // deleting this makes it uncontrolled 
                 placeholder="Last Name, First Name"
                 onChange={handleInputChange}
               />

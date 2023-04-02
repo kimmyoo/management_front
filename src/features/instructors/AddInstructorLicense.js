@@ -90,6 +90,7 @@ const AddInstructorLicense = () => {
     const content = (
         <div className='form-wrapper'>
             <h2>Add Teacher License for {instructor.name}</h2>
+            <div className='form-container'>
             <form onSubmit={handleSubmit}>
                 <label>
                     Instructor License Number(*):
@@ -128,6 +129,7 @@ const AddInstructorLicense = () => {
                 }
                 <p><button type="submit" onClick={handleSubmit}>Submit</button></p>
             </form>
+            </div>
         </div>
     )
 

@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom'
 
+
 const Public = () => {
     const content = (
         <section className="public">
             <header>
-                <h2><span className="nowrap">HYI Student Management</span></h2>
+                <h2><span className="nowrap">School Management System</span></h2>
             </header>
             <main className="public__main">
-                <p>Student Management System V2.1</p>
+                <p>V2.1</p>
                 <address className="public__addr">
-                    Huaqiao Yihu Institute<br />
-                    3720 Prince Street 4A<br />
-                    Flushing, NY 11354<br />
-                    <a href="tel:+17184455888">(718) 4455888</a>
+                    School Name<br />
+                    0000 Light street <br />
+                    New York, NY 10002<br />
+                    <a href="tel:+14132307801">(413) 2307801</a>
                 </address>
                 <br />
-                <p>Owner: Huaqiao Yihu Institute</p>
+                <p>School Webiste: www.schoolname.com</p>
             </main>
             <footer>
                 <Link to="/login">Employee Login</Link>

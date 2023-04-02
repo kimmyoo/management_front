@@ -84,7 +84,7 @@ const InstructorsDisplay = ({instructors, programs}) => {
                 <>
                     <h3>Instructor: {selectedInstructor.name}</h3>
                     {/* passing state props through Link */}
-                    <Link to="edit" state={selectedInstructor}>Edit Instructor</Link>&emsp;
+                    <Link to="edit" state={selectedInstructor}>Edit</Link>&emsp;
                     <Link to="add-license" state={selectedInstructor}>Add License</Link>&emsp;
                     <Link to="schedule" state={selectedInstructor}>Schedule Class</Link>
                     <p>Phone: {selectedInstructor.tel}</p>
@@ -94,16 +94,18 @@ const InstructorsDisplay = ({instructors, programs}) => {
 
                     {/* displays license only if she/he has a license */}
                     {selectedInstructor.licenses.length!==0 && 
-                        <div> Program and license: {
-                            selectedInstructor.licenses.map(license => (
-                                <p key={nanoid()}>
-                                    {/* filter to find out corresponding program object and use programName in span*/} 
-                                    {programs.find(program => {return program.id === license.program}).programName}__
-                                    ({license.licNum})
-                                </p>
-                            ))
+                        <div> Program and license: 
+                            {
+                                selectedInstructor.licenses.map(license => (
+                                    <p key={nanoid()}>
+                                        {/* filter to find out corresponding program object and use programName in span*/} 
+                                        {programs.find(program => {return program.id === license.program}).programName}__
+                                        ({license.licNum})
+                                    </p>
+                                ))
                             }
-                        </div>}
+                        </div>
+                    }
                 </>
             )}
             {!selectedInstructor&& <h3>Click on Teacher buttons to view, edit the instructor</h3> }

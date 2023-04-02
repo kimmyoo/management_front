@@ -13,7 +13,9 @@ const AddProgram = () => {
       programCode:'',
       length:'',
       cost:'',
-      expiresAt:'',
+      // changed expiresAt to null to avoid empty string 
+      //in database date field
+      expiresAt: null, 
       licenses: [],
       isActive: true
     });
@@ -149,7 +151,7 @@ const AddProgram = () => {
               <input
                 name='expiresAt'
                 type="text"
-                value={program.expiresAt}
+                value={program.expiresAt || ''}
                 onChange={handleInputChange}
                 placeholder="Format: YYYY-MM-DD"
               />
