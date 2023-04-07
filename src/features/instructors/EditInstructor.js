@@ -72,7 +72,7 @@ const EditInstructor = () => {
           <form onSubmit={handleSubmit}>
             <label>
               Instructor Name(*):
-              {formErrors.name && <p className="error">{formErrors.name}</p>}
+              {formErrors.name && <span className="error">{formErrors.name}</span>}
               <input
                 name="name"
                 type="text"
@@ -83,7 +83,7 @@ const EditInstructor = () => {
             </label>
             <label>
               Phone Number(*):
-              {formErrors.tel && <p className="error">{formErrors.tel}</p>}
+              {formErrors.tel && <span className="error">{formErrors.tel}</span>}
               <input
                 name="tel"
                 type="text"

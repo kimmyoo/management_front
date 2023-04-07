@@ -11,3 +11,36 @@ axiosBaseURL.get('/programs/')
 remember to install django-cors-headers
 and set allowed Origins
 
+
+
+
+
+
+Using Promise.all to wait for a handful of delays will resolve after all the delays have finished, but remember they execute at the same time:
+Example #1
+const data = await Promise.all([res(3000), res(2000), res(1000)])
+//                              ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+//                               delay 1    delay 2    delay 3
+//
+// ms ------1---------2---------3
+// =============================O delay 1
+// ===================O           delay 2
+// =========O                     delay 3
+//
+// =============================O Promise.all
+
+
+Promise.all will resolve with the data from the inner promises after 3 seconds.
+But, Promise.all has a "fail fast" behavior:
+Example #2
+const data = await Promise.all([res(3000), res(2000), rej(1000)])
+//                              ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+//                               delay 1    delay 2    delay 3
+//
+// ms ------1---------2---------3
+// =============================O delay 1
+// ===================O           delay 2
+// =========X                     delay 3
+//
+// =========X                     Promise.all
+If you use async-await instead, you will have to wait for each promise to resolve sequentially, which may not be as efficient

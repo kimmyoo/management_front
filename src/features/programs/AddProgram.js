@@ -1,4 +1,3 @@
-import React from 'react'
 import {nanoid }from 'nanoid'
 import { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
@@ -103,10 +102,9 @@ const AddProgram = () => {
           <form onSubmit={handleSubmit}>
             <label>
               Program Name(*):
-              {formErrors.programName && <p className="error">{formErrors.programName}</p>}
+              {formErrors.programName && <span className="error">{formErrors.programName}</span>}
               <input
-                name="programName"
-                type="text"
+                name="programName" type="text"
                 value={program.programName}
                 onChange={handleInputChange}
               />
@@ -114,10 +112,9 @@ const AddProgram = () => {
             </label>
             <label>
               Program Code(*):
-              {formErrors.programName && <p className="error">{formErrors.programCode}</p>}
+              {formErrors.programName && <span className="error">{formErrors.programCode}</span>}
               <input
-                name="programCode"
-                type="text"
+                name="programCode" type="text"
                 value={program.programCode}
                 onChange={handleInputChange}
               />
@@ -125,18 +122,16 @@ const AddProgram = () => {
             </label>
             <label>
               Contact Hours(*):
-              {formErrors.length && <p className="error">{formErrors.length}</p>}
+              {formErrors.length && <span className="error">{formErrors.length}</span>}
               <input
-                name="length"
-                type="text"
+                name="length" type="text"
                 value={program.length}
                 onChange={handleInputChange}
               />
-              
             </label>
             <label>
               Tuition(*):
-              {formErrors.cost && <p className="error">{formErrors.cost}</p>}
+              {formErrors.cost && <span className="error">{formErrors.cost}</span>}
               <input
                 name="cost"
                 type="text"

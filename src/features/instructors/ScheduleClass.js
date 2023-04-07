@@ -1,12 +1,10 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 import { useState, useEffect, useCallback } from 'react'
-import axiosBaseURL from '../../common/httpCommon';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { nanoid } from 'nanoid';
-import { useNavigate } from 'react-router-dom';
-import handleBackendError from '../../common/handleBackendError';
 import BackendError from '../../components/BackendError';
+import axiosBaseURL from '../../common/httpCommon';
+import handleBackendError from '../../common/handleBackendError';
 
 const ScheduleClass = () => {
     const location = useLocation()
@@ -111,9 +109,10 @@ const ScheduleClass = () => {
         axiosBaseURL.post('/classes/', classObject)
             .then(response => {
                 console.log('form submission is successful', response.data)
-                navigate("/dash/instructors")
+                navigate("/dash/classes")
             })
             .catch(error=>{
+                console.error('form submission error:', error.response.data)
                 const errorDetails = handleBackendError(error)
                 setFormErrors({
                     ...formErrors,

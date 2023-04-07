@@ -69,11 +69,12 @@ body {
   background-blend-mode: multiply;
 }
 
+
 input,
 textarea,
 select {
   font: inherit;
-  background-color : #d1d1d1; 
+  background-color : white; 
 }
 
 #root {
@@ -145,7 +146,7 @@ select {
   font-size: 1rem;
   position: sticky;
   bottom: 0;
-  z-index: 1;
+  z-index: 99;
   background-color: var(--BGCOLOR);
   padding: 0.5em;
   border-top: 1px solid var(--BORDER-COLOR);
@@ -193,7 +194,7 @@ a {
   padding: 0px;
   color: #fff;
   text-decoration: none;
-  line-height: 50px;
+  /* line-height: 20px; */
   transition: background-color 0.5s;
 }
 
@@ -206,6 +207,7 @@ a:hover {
 h3{
   color: rgb(182, 199, 105);
 }
+
 a::before {  
   transform: scaleX(0);
   transform-origin: bottom right;
@@ -230,7 +232,7 @@ a::before {
 a {
   position: relative;
   font-size: 1rem;
-  font-weight: bold;
+  /* font-weight: bold; */
   color: rgb(194, 135, 72);
 }
 
@@ -328,7 +330,16 @@ a {
     position: relative;
 }
 
-.form-wrapper .error{
+.content-wrapper{
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    position: relative;
+}
+
+.error{
   color: red;
 }
 
@@ -351,6 +362,11 @@ select{
   box-sizing: border-box;
 }
 
+label{
+  /* width: 100%; */
+  display: inline block;
+  margin: 5px 20px;
+}
 
 input[type=text]{
   width: 95%;
@@ -361,6 +377,20 @@ input[type=text]{
   border-radius: 6px;
   box-sizing: border-box;
 }
+
+.half-length input[type=text], 
+.half-length input[type=date],
+.half-length input[type=email],
+.half-length select{
+  width: 43%;
+  padding: .1em 1em;
+  margin: 5px 20px;
+  display: inline;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
 
 input[type=date]{
   width: 95%;
@@ -411,4 +441,131 @@ input[type=submit] {
     float: left; /* add this */
     border: 1px solid rgb(250, 252, 255);
     /* background-color:  rgba(255, 255, 255, 0.499); */
+}
+
+
+.table-link{
+  text-align: right;
+  font-size: 1em;
+}
+
+.class-info{
+  color:hsl(53, 77%, 50%)
+}
+
+
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.modal-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: rgba(24, 22, 22, 0.727);
+}
+
+.modal-content {
+  background-color: rgba(57, 68, 97, 0.819);
+  color: white;
+  padding: 5px;
+  width: 85%;
+  height: 80%;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 0 10px rgba(211, 220, 228, 0.596);
+  font-size: 1em;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  line-height: 1;
+  color: rgb(216, 239, 14);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+
+.form-left {
+  float: left;
+  width: 50%;
+  font-size: 1em;
+}
+
+.form-right{
+  float: left;
+  width: 50%;
+}
+
+
+@media (max-width: 767px) { /* adjust max-width as needed */
+  div {
+    float: none; /* Remove the float property */
+    width: 100%;
+  }
+}
+
+
+.table-wrapper{
+  width: 95%;
+  margin: 0 auto;
+  z-index: -2;
+  overflow-x: auto;
+}
+
+/* table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,td {
+  padding: 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+th {
+  text-align: left;
+}
+
+thead th {
+  background-color: #55608f;
+}
+
+tbody tr:hover {
+  background-color: rgba(114, 187, 255, 0.3);
+}
+
+tbody td {
+  position: relative;
+}
+
+tbody td:hover:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -9999px;
+  bottom: -9999px;
+  z-index: -100;
 }

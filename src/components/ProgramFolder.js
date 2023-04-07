@@ -1,11 +1,21 @@
+import { nanoid } from "nanoid"
+import { Link } from "react-router-dom"
+
+
+
 const ProgramFolder = ({program, programClassList}) => {
 
     let classes
     let programInfo
     // check to see if programClassList is passed to props
     if (programClassList){
-        classes = programClassList.map((clss, index)=>
-            <li key={index}><button className="button-paper">{clss}</button></li>
+        classes = programClassList.map(clss=>
+            <li key={nanoid()} >
+                <Link 
+                    to={`${clss.license}/${clss.id}`}
+                    // state={clss}
+                ><button className="button-paper">{clss.code}</button></Link>
+            </li>
         )
     }else{
         programInfo = (

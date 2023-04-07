@@ -94,7 +94,7 @@ const AddInstructorLicense = () => {
             <form onSubmit={handleSubmit}>
                 <label>
                     Instructor License Number(*):
-                    {formErrors.licNum && <p className="error">{formErrors.licNum}</p>}
+                    {formErrors.licNum && <span className="error">{formErrors.licNum}</span>}
                 </label>
                 <input
                     name="name"
@@ -105,7 +105,7 @@ const AddInstructorLicense = () => {
                 />
                 <label>
                     License Type: 
-                    {formErrors.program && <p className="error">{formErrors.program}</p>}
+                    {formErrors.program && <span className="error">{formErrors.program}</span>}
                 </label>
                 <p><select name="programs" id="programs" value={selectedOption} onChange = {handleSelectChange} >
                     <option value="default">Select A Program</option>

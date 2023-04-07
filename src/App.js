@@ -5,13 +5,21 @@ import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
 import ProgramList from './features/programs/ProgramList';
-import AllProgramList from './features/archieves/AllProgramList';
 import AddProgram from './features/programs/AddProgram';
+
 import InstructorList from './features/instructors/InstructorList';
 import AddInstructor from './features/instructors/AddInstructor';
 import EditInstructor from './features/instructors/EditInstructor';
 import AddInstructorLicense from './features/instructors/AddInstructorLicense';
 import ScheduleClass from './features/instructors/ScheduleClass';
+
+import AllProgramList from './features/classes/AllProgramList';
+import ClassDetail from './features/classes/ClassDetail';
+import EnrollToClass from './features/classes/EnrollToClass';
+
+import RecentStudents from './features/students/RecentStudents';
+import StudentDetail from './features/students/StudentDetail';
+
 function App() {
   return (
     <Routes>
@@ -35,7 +43,18 @@ function App() {
             <Route path="schedule" element={<ScheduleClass />} />
           </Route>
 
-          <Route path="archives" element={<AllProgramList />} />
+          <Route path="classes" >
+            <Route index element={<AllProgramList />}/>
+            <Route path=":licID/:clssID" element={<ClassDetail />} />
+            <Route path="classdetail/:classcode/enroll" element={<EnrollToClass />} />
+          </Route>
+
+          <Route path="students">
+            <Route index element={<RecentStudents />} />
+            <Route path="detail/:stdtID" element={<StudentDetail />} />
+
+          </Route>
+
         </Route>{/* End Dash */}
       </Route>
     </Routes>
