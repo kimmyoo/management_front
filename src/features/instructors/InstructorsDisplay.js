@@ -51,11 +51,13 @@ const InstructorsDisplay = ({instructors, programs}) => {
     const content = (
         <div className="instructor-list-container">
             <div className='instructor-left'>
-            <h2>Instructors</h2> 
-            <Link to="add">Add a New Instructor</Link>
-            <p><label htmlFor="programFilter">Filter by Program: </label>
+            <h3>Instructors</h3>
+            
+            <div className='table-link'><Link to="add">Add a New Instructor</Link></div>
+            <p>
+            <div className="half-length" >
             <select name="programs" id="programs" value={selectedOption} onChange = {handleSelectChange} >
-                <option value="default">All Instructors</option>
+                <option value="default">All Programs</option>
                 {   //populate programs into option tags
                     programs.map(program => (
                         <option 
@@ -67,6 +69,7 @@ const InstructorsDisplay = ({instructors, programs}) => {
                     ))
                 }
             </select>
+            </div>
             </p>
             <ul>
                 {

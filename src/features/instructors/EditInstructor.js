@@ -67,7 +67,7 @@ const EditInstructor = () => {
     // define content to be rendered
     const content = (
       <div className='form-wrapper'>
-        <h2>Edit Instructor, {instructor.name}</h2>
+        <h3>Edit Instructor, {instructor.name}</h3>
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <label>

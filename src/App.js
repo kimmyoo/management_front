@@ -4,6 +4,7 @@ import Public from './components/Public'
 import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
+
 import ProgramList from './features/programs/ProgramList';
 import AddProgram from './features/programs/AddProgram';
 
@@ -19,6 +20,7 @@ import EnrollToClass from './features/classes/EnrollToClass';
 
 import RecentStudents from './features/students/RecentStudents';
 import StudentDetail from './features/students/StudentDetail';
+// import EditStudent from './features/students/EditStudent';
 
 function App() {
   return (
@@ -52,7 +54,7 @@ function App() {
           <Route path="students">
             <Route index element={<RecentStudents />} />
             <Route path="detail/:stdtID" element={<StudentDetail />} />
-
+            {/* <Route path="Edit/:stdtID" element={<EditStudent />} /> */}
           </Route>
 
         </Route>{/* End Dash */}

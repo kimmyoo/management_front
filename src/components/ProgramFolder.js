@@ -13,8 +13,9 @@ const ProgramFolder = ({program, programClassList}) => {
             <li key={nanoid()} >
                 <Link 
                     to={`${clss.license}/${clss.id}`}
-                    // state={clss}
-                ><button className="button-paper">{clss.code}</button></Link>
+                >
+                    <button className="button-paper">{clss.code}</button>
+                </Link>
             </li>
         )
     }else{

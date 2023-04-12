@@ -10,6 +10,7 @@ const Welcome = () => {
             <p><Link to="/dash/programs">View Programs</Link></p>
             <p><Link to="/dash/instructors">View Instructors</Link></p>
             <p><Link to="/dash/classes">View Classes</Link></p>
+            <p><Link to="/dash/students">View Students</Link></p>
             {/* <p><Link to="/dash/users">View User Settings</Link></p> */}
         </section>
     )

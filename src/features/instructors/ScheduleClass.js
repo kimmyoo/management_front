@@ -123,7 +123,7 @@ const ScheduleClass = () => {
 
     const content = (
         <div className='form-wrapper'>
-            <h2>Schedule a class for {instructor.name}</h2>
+            <h3>Schedule a class for {instructor.name}</h3>
             {// if the instructor has at least one license
             instructor.licenses.length > 0 ?
                 <div className="form-container">

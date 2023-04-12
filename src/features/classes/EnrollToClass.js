@@ -105,7 +105,7 @@ const EnrollToClass = ({ onClose, clss, licID }) => {
             <div className='modal-background'/>
 
             <div className='modal-content'>
-                <h2>Enroll New Student to { clss.code }</h2>
+                <h3>Enroll New Student to { clss.code }</h3>
                 <button className="modal-close" onClick={onClose}>×</button>
                 {/* <div className='form-wrapper'> */}
                     <div className='form-container'>

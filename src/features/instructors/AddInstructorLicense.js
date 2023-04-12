@@ -89,7 +89,7 @@ const AddInstructorLicense = () => {
 
     const content = (
         <div className='form-wrapper'>
-            <h2>Add Teacher License for {instructor.name}</h2>
+            <h3>Add a Teacher License for {instructor.name}</h3>
             <div className='form-container'>
             <form onSubmit={handleSubmit}>
                 <label>
