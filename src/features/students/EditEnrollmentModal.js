@@ -76,7 +76,7 @@ const EditEnrollmentModal = ({onClose, stdt, classesTaken}) => {
                                 
                             />
                         </div>
-                        <div className="cell"><button onClick={handleSubmit} >confirm</button></div>
+                        <div className="cell"><button className="button-paper functional" onClick={handleSubmit} >confirm</button></div>
                     </div>
                     <div className="row">
                         <div className="cell heading error">Unenroll from:</div>
@@ -92,7 +92,7 @@ const EditEnrollmentModal = ({onClose, stdt, classesTaken}) => {
                           )
                         })}
                         </div>
-                        <div className="cell"><button onClick={handleSubmit}>confirm</button></div>
+                        <div className="cell"><button className="button-paper functional" onClick={handleSubmit}>confirm</button></div>
                     </div>
                     {
                         formErrors.backendErrors &&

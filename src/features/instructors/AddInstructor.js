@@ -129,10 +129,10 @@ const AddInstructor = () => {
               </div>
             }
 
-            <p><button type="submit" onClick={handleSubmit}>Submit</button></p>
+            <p><button className="button-paper functional"type="submit" onClick={handleSubmit}>Submit</button></p>
           </form>
         </div>
-        <p><Link to="/dash/instructors">Back to Instructors</Link></p>
+        <p><Link to="/dash/instructors">Back</Link></p>
       </div>
     )
 

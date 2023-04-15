@@ -27,10 +27,12 @@ const ProgramList = () => {
     // generate content to render
     const content = (
         <div className="content-wrapper">
-            <h2>Program Overview</h2>
-            <div className="nav subnav">
+            <h3>Program Overview</h3>
+            <div className="right-side">
                  <p>
-                    <Link to="/dash/programs/add">Add New Program</Link>
+                    <Link to="/dash/programs/add">
+                        <button className="button-paper functional">Add New Program</button>
+                    </Link>
                  </p>
             </div>
             <div className='all-programs-wrapper'>   

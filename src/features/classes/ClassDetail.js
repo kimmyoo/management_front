@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo} from 'react'
 import { useParams, Link} from 'react-router-dom'
 import { useTable } from 'react-table'
-import { STUDENT_LIST_HEADER } from '../../common/tableheaders';
+import { STUDENT_LIST_HEADER } from '../../common/tableheaders'
 import axiosBaseURL from '../../common/httpCommon'
-import EnrollToClass from './EnrollToClass';
+import EnrollToClass from './EnrollToClass'
+import EditClassModal from './EditClassModal'
 
 const ClassDetail = () => {
     // states
@@ -12,7 +13,9 @@ const ClassDetail = () => {
     const [clss, setClss] = useState({})
     const [students, setStudets] = useState([])
     const [license, setLicense] = useState({})
-    const [showModal, setShowModal] = useState(false);
+    const [showEnrollModal, setShowEnrollModal] = useState(false)
+    const [showEditModal, setShowEditModal] = useState(false)
+    
     // for react tables
     const columns = useMemo(()=>STUDENT_LIST_HEADER, [])
     const data = useMemo(()=>students, [students])
@@ -44,23 +47,28 @@ const ClassDetail = () => {
         .catch(error=>{
             console.error('failed to retrieve data:', error.response)
         })
-    }, [showModal, clssID, licID])
+    }, [showEnrollModal, showEditModal, clssID, licID])
 
     // modal controls 
-    const handleOpenModal = () => {
-        setShowModal(true);
+    const handleOpenEnrollModal = () => {
+        setShowEnrollModal(true)
     }
-
-    const handleCloseModal = () => {
-        setShowModal(false);
+    const handleCloseEnrollModal = () => {
+        setShowEnrollModal(false)
+    }
+    const handleOpenEditModal = () => {
+        setShowEditModal(true)
+    }
+    const handleCloseEditModal = () => {
+        setShowEditModal(false)
     }
 
     const content = (
         <div className='content-wrapper'>
-            <h2>{license.program_repr} {clss.code} Class Detail</h2>
-            <div className='table-link'>
-                <button  onClick={handleOpenModal}>Enroll Student</button>&emsp;
-                <Link to="edit" >Edit Class</Link>
+            <h3>PROGRAM: {license.program_repr} ---{clss.code} Class Detail</h3>
+            <div className='right-side'>
+                <button className='button-paper functional' onClick={handleOpenEnrollModal}>Enroll Student</button>&emsp;
+                <button className='button-paper functional' onClick={handleOpenEditModal}>Edit Class</button>
             </div>
             <p className='class-info'>
                 {isLoading ? "loading..." :
@@ -109,7 +117,10 @@ const ClassDetail = () => {
 
             {/* enroll student modal component */}
             {
-                showModal&&<EnrollToClass onClose={handleCloseModal} clss={clss} licID={license.id}/>
+                showEnrollModal&&<EnrollToClass onClose={handleCloseEnrollModal} clss={clss} licID={license.id}/>
+            }
+            {
+                showEditModal&&<EditClassModal onClose={handleCloseEditModal} cls={clss} license={license}/>
             }
         </div>
     )

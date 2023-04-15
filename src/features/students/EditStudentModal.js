@@ -5,6 +5,7 @@ import axiosBaseURL from '../../common/httpCommon'
 import handleBackendError from '../../common/handleBackendError'
 import {useNavigate} from 'react-router-dom'
 import disableEnterSubmit from '../../common/disableEnterSubmit'
+import DeleteButton from '../../components/DeleteButton'
 
 
 const EditStudentModal = ({stdt, onClose}) => {
@@ -29,9 +30,7 @@ const EditStudentModal = ({stdt, onClose}) => {
 
         axiosBaseURL.put(`/student/detail/${student.id}`, student)
             .then(response=>{
-                console.log(response.data)
                 onClose()
-                navigate(`/dash/students/detail/${student.id}`)
             })
             .catch(error=>{
                 console.error("error", error)
@@ -40,6 +39,17 @@ const EditStudentModal = ({stdt, onClose}) => {
                     ...formErrors,
                     backendErrors: errorDetails
                 })
+            })
+    }
+
+    const handleDelete = (e) => {
+      axiosBaseURL.delete(`/student/detail/${student.id}`)
+            .then(response=>{
+                navigate("/dash/students")
+                navigate(0)
+            })
+            .catch(error=>{
+                console.error(error)
             })
     }
 
@@ -183,6 +193,14 @@ const EditStudentModal = ({stdt, onClose}) => {
                             />
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="cell heading">
+                            <DeleteButton onDelete={handleDelete}/>
+                        </div>
+                        <div className="cell">
+                            
+                        </div>
+                    </div>
                     {
                         formErrors.backendErrors &&
                         <div className="row">
@@ -194,7 +212,7 @@ const EditStudentModal = ({stdt, onClose}) => {
                     }
 
                 </div>
-                <button onClick={handleSubmit}>submit</button>
+                <button className="button-paper functional" onClick={handleSubmit}>submit</button>
             </form>
             </div>
         </div>

@@ -1,14 +1,13 @@
-// import {nanoid }from 'nanoid'
+// this component only add a student instance
+// no class instance is associated with the student instance pageYOffset. 
 import { useEffect, useState } from 'react';
-import {useNavigate} from 'react-router-dom';
 import axiosBaseURL from "../../common/httpCommon";
 import handleBackendError from '../../common/handleBackendError';
-// import BackendError from '../../components/BackendError';
-import EnrollmentForm from '../../components/EnrollmentForm';
 import { preValidate } from '../../common/studentFormValidation';
+import EnrollmentForm from '../../components/EnrollmentForm';
 
-const EnrollToClass = ({ onClose, clss, licID }) => {
-    const navigate = useNavigate()
+const AddStudentModal = ({ onClose }) => {
+
     const[formData, setFormData] = useState({
         lName: '',
         fName: '',
@@ -20,8 +19,9 @@ const EnrollToClass = ({ onClose, clss, licID }) => {
         email: '',
         accountInfo:'',
         note:'',
-        classes: [clss.id]
+        classes: []
     })
+
     const [formErrors, setFormErrors] = useState({})
     const [studentID, setStudentID] = useState('')
 
@@ -48,12 +48,11 @@ const EnrollToClass = ({ onClose, clss, licID }) => {
         e.preventDefault()
         const studentObject = formData
         studentObject.studentID = studentID
-        if(!preValidate(formData, setFormErrors)) return
+        if(!preValidate(studentObject, setFormErrors)) return
         axiosBaseURL.post('/students/', studentObject)
             .then(response =>{
                 console.log("form submission was successful.")
-                onClose()
-                navigate(`/dash/classes/${licID}/${clss.id}`)
+                onClose() // triggers parent component reload
             })
             .catch(error => {
                 console.error("error", error)
@@ -63,15 +62,13 @@ const EnrollToClass = ({ onClose, clss, licID }) => {
                     backendErrors: errorDetails
                 })
             })
-        // closing the modal which triggers useEffect in parent component
-        // to reload data
     }
 
     const content = (
         <div className='modal'>
             <div className='modal-background'/>
             <div className='modal-content'>
-                <h3>Enroll a student to { clss.code }</h3>
+                <h3>Register a New Student</h3>
                 <button className="modal-close" onClick={onClose}>×</button>
                     <EnrollmentForm 
                         formData={formData} 
@@ -89,4 +86,4 @@ const EnrollToClass = ({ onClose, clss, licID }) => {
     )
 }
 
-export default EnrollToClass
+export default AddStudentModal

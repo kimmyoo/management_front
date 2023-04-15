@@ -14,7 +14,12 @@ const ProgramFolder = ({program, programClassList}) => {
                 <Link 
                     to={`${clss.license}/${clss.id}`}
                 >
-                    <button className="button-paper">{clss.code}</button>
+                    <button className={
+                        `button-paper ${clss.status==="opn"
+                        ?"open": clss.status==="ogg"
+                        ?"ongoing":"closed"}`
+                        }>{clss.code}
+                    </button>
                 </Link>
             </li>
         )
@@ -36,7 +41,7 @@ const ProgramFolder = ({program, programClassList}) => {
 
     const content = (
         <div className="program-folder">
-            <div className="program-folder-ear">{program.programName}</div>
+            <div className="program-folder-ear"><Link to={`/dash/classes/in/program/${program.id}`}>{program.programName}</Link></div>
             {programClassList && <ul>{classes}</ul>}
             {programInfo}
         </div>

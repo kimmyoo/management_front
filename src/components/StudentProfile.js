@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 
 
 const StudentProfile = ({student, classes}) => {
+
   return (
         <div className="table">
             <div className="row">

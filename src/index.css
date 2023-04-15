@@ -203,19 +203,16 @@ a:hover {
   color: rgb(0, 195, 255);
 }
 
-/* animation */
+
 h3{
   color: rgb(182, 199, 105);
 }
 
-a::before {  
-  transform: scaleX(0);
-  transform-origin: bottom right;
-}
-
-a:hover::before {
-  transform: scaleX(1);
-  transform-origin: bottom left;
+a {
+  position: relative;
+  font-size: 1rem;
+  /* font-weight: bold; */
+  color: rgb(194, 135, 72);
 }
 
 a::before {
@@ -227,13 +224,13 @@ a::before {
   background: hsl(72, 100%, 80%);
   z-index: -1;
   transition: transform .7s ease;
+  transform: scaleX(0);
+  transform-origin: bottom right;
 }
 
-a {
-  position: relative;
-  font-size: 1rem;
-  /* font-weight: bold; */
-  color: rgb(194, 135, 72);
+a:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
 }
 
 .program-list-wrapper{
@@ -242,7 +239,6 @@ a {
   width: 100%;
   gap: 20px 5px;
 }
-
 
 .subnav{
   float: left;
@@ -264,10 +260,8 @@ a {
   height:150px;
   width: 300px;
   top: 10px;
-  /* display: inline-block; */
   margin: 10px auto;
   text-align: left;
-  /* overflow-wrap: break-word; */
   font-size: 1rem;
   color: rgba(255, 255, 255, 0.721);
   padding: .5rem;
@@ -277,12 +271,12 @@ a {
 
 .program-folder-ear{
     font-size: 1rem;
-    font-family:'Anton';
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: white;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     height: 2rem;
-    width: auto;
+    width: 180px;
     padding: .5rem;
     position:absolute;
     left:15px;
@@ -293,15 +287,13 @@ a {
 
 
 /* buttons */
-
 .button-paper {
   align-self: center;
-  background-color: #4d8cc7;
   background-image: none;
   background-repeat: repeat no-repeat;
   background-size: 4px 3px;
   cursor: pointer;
-  font-size: .8rem;
+  font-size: 1em;
   line-height: 15px;
   padding: .2rem;
   text-decoration: none;
@@ -320,6 +312,31 @@ a {
   box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
 }
 
+.closed{
+  background-color: #3c68b4;
+  /* color: white; */
+}
+.open{
+  background-color: #55c74d;
+}
+.ongoing{
+  background-color: yellow;
+}
+.instructor{
+  background-color: rgba(210, 224, 231, 0.632);
+  margin: 5px;
+}
+
+.delete{
+  background-color:rgba(246, 61, 79, 0.718);
+  font-size: 1em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.functional{
+  background-color:rgba(184, 241, 241, 0.673);
+  font-size: 1em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
 
 /* forms */
 .form-wrapper{
@@ -356,51 +373,59 @@ a {
 select{
   width: 60%;
   padding: .2em .5em;
-  margin: 5px 20px;
+  margin: 4px 0px 0px 0px;
   display: block;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
 }
 
 label{
   /* width: 100%; */
   display: inline block;
-  margin: 5px 20px;
+  margin: 5px 0px;
 }
 
 input[type=text]{
   width: 95%;
-  padding: .1em .5em;
-  margin: 1px 20px;
+  padding: .2em .5em;
+  margin: 4px 0px 0px 0px;
   display: block;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
 }
 
 .half-length input[type=text], 
 .half-length input[type=date],
 .half-length input[type=email],
 .half-length select{
-  width: 43%;
-  padding: .1em 1em;
-  margin: 2px 20px;
+  width: 44%;
+  padding: .2em .5em;
+  margin: 10px 0px 0px 10px;
   display: inline;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
 }
 
 
 input[type=date]{
-  width: 95%;
+  width: 60%;
   padding: .2em .5em;
-  margin: 5px 20px;
+  margin: 5px 0px;
   display: block;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
 }
 
 
@@ -408,11 +433,13 @@ input[type=submit] {
   width: 100%;
   /* background-color: #a97e2d; */
   color: white;
-  padding: 14px 20px;
+  padding: 14px 0px;
   margin: 8px 0;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
 }
 
 .instructor-list-container{
@@ -445,7 +472,7 @@ input[type=submit] {
 }
 
 
-.table-link{
+.right-side{
   text-align: right;
   font-size: 1em;
 }
@@ -474,7 +501,7 @@ input[type=submit] {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: -1;
   background-color: rgba(24, 22, 22, 0.727);
 }
@@ -484,7 +511,7 @@ input[type=submit] {
   color: white;
   padding: 5px;
   width: 85%;
-  height: 85%;
+  height: auto;
   border-radius: 5px;
   position: relative;
   box-shadow: 0 0 10px rgba(211, 220, 228, 0.596);
@@ -584,9 +611,9 @@ tbody td {
 
 
 .heading {
-  width: 25%;
+  width: 20%;
   font-weight: bold;
-  text-align: right;
+  /* text-align: right; */
 }
 
 .avatar{

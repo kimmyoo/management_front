@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import axiosBaseURL from '../../common/httpCommon'
 import { nanoid } from 'nanoid'
+import { Link } from 'react-router-dom'
 
 const AddInstructorLicense = () => {
     const navigate = useNavigate()
@@ -127,9 +128,10 @@ const AddInstructorLicense = () => {
                     {formErrors.backendErrors.map(error => (<p key={nanoid()}>{error}</p>))}
                 </div>
                 }
-                <p><button type="submit" onClick={handleSubmit}>Submit</button></p>
+                <p><button className="button-paper functional" type="submit" onClick={handleSubmit}>Submit</button></p>
             </form>
             </div>
+            <Link to="/dash/instructors">Back</Link>
         </div>
     )
 

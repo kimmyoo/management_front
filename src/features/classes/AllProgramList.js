@@ -27,7 +27,7 @@ const AllProgramList = () => {
 
     const content = (
         <div className='content-wrapper'>
-            <h3>Select a Program Folder</h3>
+            <h3>Recently added classes</h3>
             <div className='all-programs-wrapper'>
                 {programs.map(program => {
                     const classesOfThisProgram = classList.filter(clss =>

@@ -21,10 +21,10 @@ const StudentDetail = () => {
         .then(response=>{
             setStudent(response[0].data)
             setClassesTaken(response[1].data)
-            console.log("student and classes taken obtained successfully")
+            // console.log("student and classes taken obtained successfully")
         })
         .catch(error=>{
-            console.error(error, error)
+            console.error("error", error)
         })
     },[stdtID, showEditModal, showEnrollModal])
 
@@ -49,9 +49,9 @@ const StudentDetail = () => {
     const content = (
         <div className='content-wrapper'>
             <h3>Student Profile Page</h3>
-            <div className='table-link'>
-                <button onClick={handleOpenEditModal}>Edit Student</button>&emsp;
-                <button onClick={handleOpenEnrollModal}>Edit Enrollment</button>
+            <div className='right-side'>
+                <button className='button-paper functional' onClick={handleOpenEditModal}>Edit Student</button>&emsp;
+                <button className='button-paper functional' onClick={handleOpenEnrollModal}>Edit Enrollment</button>
             </div>
             <StudentProfile student={student} classes={classesTaken}/>
             {

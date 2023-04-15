@@ -193,7 +193,7 @@ const ScheduleClass = () => {
                         </div>
                         {/* backend error display component */}
                         <BackendError errors={formErrors.backendErrors} />
-                        <p><button type="submit" onClick={handleSubmit}>Submit</button></p>
+                        <p><button className="button-paper functional" type="submit" onClick={handleSubmit}>Submit</button></p>
                     </form>
                 </div>
             :  // no instructor has no license yet

@@ -16,11 +16,12 @@ import ScheduleClass from './features/instructors/ScheduleClass';
 
 import AllProgramList from './features/classes/AllProgramList';
 import ClassDetail from './features/classes/ClassDetail';
-import EnrollToClass from './features/classes/EnrollToClass';
+import ClassesOfSameProg from './features/classes/ClassesOfSameProg';
+
 
 import RecentStudents from './features/students/RecentStudents';
 import StudentDetail from './features/students/StudentDetail';
-// import EditStudent from './features/students/EditStudent';
+
 
 function App() {
   return (
@@ -48,7 +49,8 @@ function App() {
           <Route path="classes" >
             <Route index element={<AllProgramList />}/>
             <Route path=":licID/:clssID" element={<ClassDetail />} />
-            <Route path="classdetail/:classcode/enroll" element={<EnrollToClass />} />
+            <Route path="in/program/:programID" element={<ClassesOfSameProg/> } />
+            {/* <Route path="classdetail/:classcode/enroll" element={<EnrollToClass />} /> */}
           </Route>
 
           <Route path="students">
