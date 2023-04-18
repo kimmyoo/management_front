@@ -348,6 +348,17 @@ a:hover::before {
     position: relative;
 }
 
+.login-form-wrapper{
+    background-color: #2f3a6a;
+    width: 50%;
+    height: auto;
+    margin: 100px auto;
+    padding: 30px;
+    position: relative;
+    position: relative;
+    border-radius: 12px;
+}
+
 .content-wrapper{
     width: 100%;
     height: auto;
@@ -388,7 +399,7 @@ label{
   margin: 5px 0px;
 }
 
-input[type=text]{
+input[type=text], input[type=password]{
   width: 95%;
   padding: .2em .5em;
   margin: 4px 0px 0px 0px;

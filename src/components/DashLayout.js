@@ -1,16 +1,41 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet, useOutletContext} from 'react-router-dom'
 import DashHeader from './DashHeader'
 import DashFooter from './DashFooter'
+import { useState, useEffect } from 'react'
+import axiosBaseURL from '../common/httpCommon'
 
 const DashLayout = () => {
-    return (
+    const [user, setUser] = useState({})
+    useEffect(() => {
+        axiosBaseURL.get('/user', 
+        {withCredentials:true})
+            .then(response=>{
+                setUser(response.data)
+            })
+            .catch(error=>{
+                console.error("error:", error)
+            })
+    }, [])
+
+    const content = (        
         <>
             <DashHeader />
             <div className="dash-container">
-                <Outlet />
+                <Outlet context={user}/>
             </div>
-            <DashFooter />
+            <DashFooter user={user}/>
         </>
+    )
+
+    return (
+        content
     )
 }
 export default DashLayout
+
+
+// export custom hook useUser() so children components 
+// are able to use. 
+export function useUser(){
+    return useOutletContext()
+}

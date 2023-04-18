@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import axiosBaseURL from "../../common/httpCommon";
 
-
 const ProgramList = () => {
     // initilize programs to an empty array
     const [programs, setPrograms] = useState([]);
-    
+
     // fetching data
     useEffect(() => {
         axiosBaseURL.get('/programs/')
