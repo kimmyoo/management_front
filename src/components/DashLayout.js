@@ -14,6 +14,11 @@ const DashLayout = () => {
             })
             .catch(error=>{
                 console.error("error:", error)
+                // if token expired, user is not authenticated
+                // direct to login page. 
+                if (error.response.status === 403) {
+                    window.location.href = '/login';
+                }
             })
     }, [])
 

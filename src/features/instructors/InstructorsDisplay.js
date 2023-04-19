@@ -11,7 +11,6 @@ const InstructorsDisplay = ({instructors, programs}) => {
 
     const filterInstructorsByProgram = useCallback(() => {
         const programId = selectedOption
-        // console.log(programId)
         const res = instructors.filter(instructor => {
             // if the instructor does have at least one license
             if (instructor.licenses.length > 0){

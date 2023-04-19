@@ -6,9 +6,11 @@ import handleBackendError from '../../common/handleBackendError'
 import {useNavigate} from 'react-router-dom'
 import disableEnterSubmit from '../../common/disableEnterSubmit'
 import DeleteButton from '../../components/DeleteButton'
-
+import BackendError from '../../components/BackendError'
+import { useUser } from '../../components/DashLayout'
 
 const EditStudentModal = ({stdt, onClose}) => {
+    const user = useUser()
     const navigate = useNavigate()
     const [student, setStudent] = useState(stdt)
     const [formErrors, setFormErrors] = useState({})
@@ -43,13 +45,19 @@ const EditStudentModal = ({stdt, onClose}) => {
     }
 
     const handleDelete = (e) => {
-      axiosBaseURL.delete(`/student/detail/${student.id}`)
+        axiosBaseURL.delete(`/student/detail/${student.id}`)
             .then(response=>{
+                console.log(response)
                 navigate("/dash/students")
                 navigate(0)
             })
             .catch(error=>{
                 console.error(error)
+                const errorDetails = handleBackendError(error)
+                setFormErrors({
+                    ...formErrors,
+                    backendErrors: errorDetails
+                })
             })
     }
 
@@ -193,7 +201,9 @@ const EditStudentModal = ({stdt, onClose}) => {
                             />
                         </div>
                     </div>
-                    <div className="row">
+                    {
+                        user.is_superuser&&
+                        <div className="row">
                         <div className="cell heading">
                             <DeleteButton onDelete={handleDelete}/>
                         </div>
@@ -201,17 +211,9 @@ const EditStudentModal = ({stdt, onClose}) => {
                             
                         </div>
                     </div>
-                    {
-                        formErrors.backendErrors &&
-                        <div className="row">
-                            <div className='cell heading error'>Backend Error</div>
-                            <div className='cell'>
-                                <p className='error'>{formErrors.backendErrors}</p>
-                            </div>
-                        </div>
                     }
-
                 </div>
+                <BackendError errors={formErrors.backendErrors} />
                 <button className="button-paper functional" onClick={handleSubmit}>submit</button>
             </form>
             </div>

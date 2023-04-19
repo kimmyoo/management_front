@@ -1,10 +1,10 @@
 import React from 'react'
 import { useState, useEffect, useCallback } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { nanoid } from 'nanoid';
-import BackendError from '../../components/BackendError';
-import axiosBaseURL from '../../common/httpCommon';
-import handleBackendError from '../../common/handleBackendError';
+import axiosBaseURL from '../../common/httpCommon'
+import handleBackendError from '../../common/handleBackendError'
+import BackendError from '../../components/BackendError'
 
 const ScheduleClass = () => {
     const location = useLocation()
@@ -16,10 +16,10 @@ const ScheduleClass = () => {
     // state for holding form data
     const [formData, setFormData] = useState({
         'code': '',
-        "begin": null, 
-        "end": null, 
-        "intBegin": null, 
-        "intEnd": null,
+        'begin': null, 
+        'end': null, 
+        'intBegin': null, 
+        'intEnd': null,
         'note': '',
         'intSite': '',
     })
@@ -180,7 +180,7 @@ const ScheduleClass = () => {
                                 {formErrors.begin && <span className="error">{formErrors.begin}</span>}
                                 <p><input type="date" name="begin" onChange = {handleInputChange}/></p>
                             <label>Class ends on(*)</label>
-                                {formErrors.end && <span className="error">{formErrors.begin}</span>} 
+                                {formErrors.end && <span className="error">{formErrors.end}</span>} 
                                 <p><input type="date" name="end" onChange = {handleInputChange}/></p>
                             <label>Internship starts on</label>
                                 <p><input type="date" name="intBegin" onChange = {handleInputChange}/></p>
