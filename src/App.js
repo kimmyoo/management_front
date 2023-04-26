@@ -21,6 +21,10 @@ import ClassesOfSameProg from './features/classes/ClassesOfSameProg';
 
 import RecentStudents from './features/students/RecentStudents';
 import StudentDetail from './features/students/StudentDetail';
+import SearchStudent from './features/students/SearchStudent';
+
+import ImportPage from './features/import/ImportPage'
+
 
 
 function App() {
@@ -56,7 +60,12 @@ function App() {
           <Route path="students">
             <Route index element={<RecentStudents />} />
             <Route path="detail/:stdtID" element={<StudentDetail />} />
-            {/* <Route path="Edit/:stdtID" element={<EditStudent />} /> */}
+            <Route path="search" element={<SearchStudent />} />
+          </Route>
+
+          <Route path="import">
+            <Route index element={<ImportPage />}/>
+
           </Route>
 
         </Route>{/* End Dash */}

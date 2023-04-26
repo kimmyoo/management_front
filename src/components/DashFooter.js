@@ -1,21 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHouse } from "@fortawesome/free-solid-svg-icons"
+import { faHouse, faRightFromBracket } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate, useLocation } from 'react-router-dom'
 import axiosBaseURL from "../common/httpCommon"
+import { useContext } from "react"
+import { UserContext } from "./DashLayout"
 
-
-const DashFooter = ({user}) => {
+const DashFooter = () => {
+    const user = useContext(UserContext)
     const date = new Date()
-    const today = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'long' }).format(date)
+    const today = new Intl.DateTimeFormat('en-US', { dateStyle: 'short', timeStyle: 'short' }).format(date)
     const navigate = useNavigate()
     const { pathname } = useLocation()
 
-    const onGoHomeClicked = () => navigate('/dash')
+    const onGoHomeClicked = () => {
+        navigate('/dash')
+        // navigate(0)
+    }
+        
     const logout = () => {
         axiosBaseURL.post('/logout')
             .then(reponse=>{
-                console.log("logged out successfully")
-                navigate('/login')
+                console.log("logged out")
+                navigate('/')
             })
     }
 
@@ -23,7 +29,7 @@ const DashFooter = ({user}) => {
     if (pathname !== '/dash') {
         goHomeButton = (
             <button
-                className="dash-footer__button icon-button"
+                className="dash-footer__button icon-button warn"
                 title="Home"
                 onClick={onGoHomeClicked}
             >
@@ -32,14 +38,23 @@ const DashFooter = ({user}) => {
         )
     }
 
+    const logoutButton = (
+        <button
+            className="dash-footer__button icon-button warn"
+            title="Logout"
+            onClick={logout}
+        >
+            <FontAwesomeIcon icon={faRightFromBracket} />
+        </button>
+    )
 
+    
     const content = (
         <footer className="dash-footer">
-            {goHomeButton}
-            <p>Current User:{user.username}</p>
-            <p>User Group:{user.is_superuser?"Administrator":"Staff"}</p>
-            <span className="dash-footer__span">{today}</span>
-            <button onClick={logout}>logout</button>
+            <p>{goHomeButton}</p>
+            <p>User:{user?.username}, {user?.is_superuser?"Administrator":"Staff"}</p>
+            <p><span className="dash-footer__span">{today}</span></p>
+            <p>{logoutButton}</p>
         </footer>
     )
     return content

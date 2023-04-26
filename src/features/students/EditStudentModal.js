@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { preValidate } from '../../common/studentFormValidation'
 import axiosBaseURL from '../../common/httpCommon'
 import handleBackendError from '../../common/handleBackendError'
@@ -7,10 +6,12 @@ import {useNavigate} from 'react-router-dom'
 import disableEnterSubmit from '../../common/disableEnterSubmit'
 import DeleteButton from '../../components/DeleteButton'
 import BackendError from '../../components/BackendError'
-import { useUser } from '../../components/DashLayout'
+// import { useUser } from '../../components/DashLayout'
+import { UserContext } from '../../components/DashLayout'
+
 
 const EditStudentModal = ({stdt, onClose}) => {
-    const user = useUser()
+    const user = useContext(UserContext)
     const navigate = useNavigate()
     const [student, setStudent] = useState(stdt)
     const [formErrors, setFormErrors] = useState({})
@@ -47,7 +48,7 @@ const EditStudentModal = ({stdt, onClose}) => {
     const handleDelete = (e) => {
         axiosBaseURL.delete(`/student/detail/${student.id}`)
             .then(response=>{
-                console.log(response)
+                // console.log(response)
                 navigate("/dash/students")
                 navigate(0)
             })
@@ -202,10 +203,10 @@ const EditStudentModal = ({stdt, onClose}) => {
                         </div>
                     </div>
                     {
-                        user.is_superuser&&
+                        user?.is_superuser&&
                         <div className="row">
                         <div className="cell heading">
-                            <DeleteButton onDelete={handleDelete}/>
+                            <DeleteButton type="button" onDelete={handleDelete}/>
                         </div>
                         <div className="cell">
                             
@@ -214,7 +215,12 @@ const EditStudentModal = ({stdt, onClose}) => {
                     }
                 </div>
                 <BackendError errors={formErrors.backendErrors} />
-                <button className="button-paper functional" onClick={handleSubmit}>submit</button>
+                <button className="button-paper functional" 
+                        onClick={handleSubmit}
+                        type='submit'
+                >
+                        submit
+                </button>
             </form>
             </div>
         </div>
@@ -222,7 +228,7 @@ const EditStudentModal = ({stdt, onClose}) => {
   
     return (
         content
-  )
+    )
 }
 
 export default EditStudentModal

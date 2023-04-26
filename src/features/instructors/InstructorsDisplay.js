@@ -1,13 +1,16 @@
 import React from 'react'
-import { useState, useEffect, useCallback} from 'react';
+import { useState, useEffect, useCallback, useContext} from 'react';
 import { Link } from 'react-router-dom';
 import { nanoid } from 'nanoid';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUserPlus, faUserPen, faAdd, faCalendarPlus} from "@fortawesome/free-solid-svg-icons"
+import { UserContext } from '../../components/DashLayout';
 
 const InstructorsDisplay = ({instructors, programs}) => {
     const [selectedInstructor, setSelectedInstructor] = useState(null);
     const [displayInstructors, setDisplayInstructors] =useState([])
     const [selectedOption, setSelectedOption] = useState('default')
-
+    const user = useContext(UserContext)
 
     const filterInstructorsByProgram = useCallback(() => {
         const programId = selectedOption
@@ -46,71 +49,85 @@ const InstructorsDisplay = ({instructors, programs}) => {
 
     // define content to render
     const content = (
-        <div className="instructor-list-container">
-            <div className='instructor-left'>
-            <h3>Instructors</h3>
-            <p className='right-side'>
-                <Link to="add">Add a New Instructor</Link>
-            </p>
-            <div className="half-length" >
-            <select name="programs" id="programs" value={selectedOption} onChange = {handleSelectChange} >
-                <option value="default">All Programs</option>
-                {   //populate programs into option tags
-                    programs.map(program => (
-                        <option 
-                            key={nanoid()}
-                            value={program.id}
-                        >
-                            {program.programName}
-                        </option>
-                    ))
-                }
-            </select>
-            </div>
-
-            <ul>
+        <div className="content-wrapper">
+            <div className='search-wrapper'>
+                <h3>Instructors</h3>
                 {
-                    displayInstructors.length !== 0? displayInstructors.map(instructor => (
-                    <li key={nanoid()}>
-                        <button className="button-paper instructor" onClick={() => handleClick(instructor)}>{instructor.name}</button>
-                    </li>
-                    )):<li>Nothing to display</li>
+                    user?.is_superuser
+                    &&
+                    <p className='right-side'>
+                        {/* add instructor Link */}
+                        <Link to="add"><FontAwesomeIcon icon={faUserPlus} />Add</Link>
+                    </p>
                 }
-            </ul>
+                <div className="half-length" >
+                <select name="programs" id="programs" value={selectedOption} onChange = {handleSelectChange} >
+                    <option value="default">All Programs</option>
+                    {   //populate programs into option tags
+                        programs.map(program => (
+                            <option 
+                                key={nanoid()}
+                                value={program.id}
+                            >
+                                {program.programName}
+                            </option>
+                        ))
+                    }
+                </select>
+                </div>
+
+                <ul>
+                    {
+                        displayInstructors.length !== 0? displayInstructors.map(instructor => (
+                        <li key={nanoid()}>
+                            <button className="button-paper instructor" onClick={() => handleClick(instructor)}>{instructor.name}</button>
+                        </li>
+                        )):<li>Nothing to display</li>
+                    }
+                </ul>
             </div>
 
-            <div className='instructor-right'>
-            {selectedInstructor && (
-                <>
-                    <h3>Instructor: {selectedInstructor.name}</h3>
-                    
-                    {/* passing state props through Link */}
-                    <Link to="edit" state={selectedInstructor}>Edit</Link>&emsp;
-                    <Link to="add-license" state={selectedInstructor}>Add License</Link>&emsp;
-                    <Link to="schedule" state={selectedInstructor}>Schedule Class</Link>
-                    <p>Phone: {selectedInstructor.tel}</p>
-                    
-                    {/* <p>E-mail: <a href={`mailto:${selectedInstructor.email}`}>{selectedInstructor.email}</a></p> */}
-                    <p>E-mail: {selectedInstructor.email}</p>
-                    <p>Address: {selectedInstructor.address}</p>
-                    
-                    {/* displays license only if she/he has a license */}
-                    {selectedInstructor.licenses.length!==0 && 
-                        <div> Program and license: 
-                            {
-                                selectedInstructor.licenses.map(license => (
-                                    <p key={nanoid()}>
-                                        {/* filter to find out corresponding program object and use programName in span*/} 
-                                        {programs.find(program => {return program.id === license.program}).programName}__
-                                        ({license.licNum})
-                                    </p>
-                                ))
-                            }
-                        </div>
-                    }
-                </>
-            )}
-            {!selectedInstructor&& <h3>Click on Teacher buttons to view, edit the instructor</h3> }
+            <div className='result-wrapper'>
+                {selectedInstructor && (
+                    <>
+                        <h3>{selectedInstructor.name.toUpperCase()}</h3>
+                        {/* passing state props through Link */}
+                        {
+                            user?.is_superuser&&
+                            <p>
+                                <Link to="edit" state={selectedInstructor}><FontAwesomeIcon icon={faUserPen} />Edit</Link>&emsp;
+                                <Link to="add-license" state={selectedInstructor}><FontAwesomeIcon icon={faAdd} />Add Lic</Link>&emsp;
+                                <Link to="schedule" state={selectedInstructor}><FontAwesomeIcon icon={faCalendarPlus} />Schedule</Link>
+                            </p>
+                        }
+                        <p>Phone: {selectedInstructor.tel}</p>
+                        
+                        {/* <p>E-mail: <a href={`mailto:${selectedInstructor.email}`}>{selectedInstructor.email}</a></p> */}
+                        <p>E-mail: {selectedInstructor.email}</p>
+                        <p>Address: {selectedInstructor.address}</p>
+                        
+                        {/* displays license only if she/he has a license */}
+                        {selectedInstructor.licenses.length!==0 
+                            ?
+                            <div> Program and license: 
+                                {
+                                    selectedInstructor.licenses.map(license => (
+                                        <p key={nanoid()}>
+                                            {/* filter to find out corresponding program object and use programName in span*/} 
+                                            {programs.find(program => {return program.id === license.program}).programName}__
+                                            ({license.licNum})
+                                        </p>
+                                    ))
+                                }
+                            </div>
+                            :
+                            <p className='warn'>
+                                this instructor has no license yet.
+                            </p>
+                        }
+                    </>
+                )}
+                {!selectedInstructor&&<h3>Click on Teacher buttons to view or edit the instructor</h3> }
             </div>
         </div>
     )

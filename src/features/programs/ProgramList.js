@@ -1,12 +1,14 @@
 import ProgramFolder from "../../components/ProgramFolder"
 import { Link } from "react-router-dom";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axiosBaseURL from "../../common/httpCommon";
+import { UserContext } from "../../components/DashLayout";
+
 
 const ProgramList = () => {
     // initilize programs to an empty array
     const [programs, setPrograms] = useState([]);
-
+    const user = useContext(UserContext)
     // fetching data
     useEffect(() => {
         axiosBaseURL.get('/programs/')
@@ -27,13 +29,17 @@ const ProgramList = () => {
     const content = (
         <div className="content-wrapper">
             <h3>Program Overview</h3>
-            <div className="right-side">
-                 <p>
-                    <Link to="/dash/programs/add">
-                        <button className="button-paper functional">Add New Program</button>
-                    </Link>
-                 </p>
-            </div>
+            {
+                user?.is_superuser
+                &&
+                <div className="right-side">
+                    <p>
+                        <Link to="/dash/programs/add">
+                            <button className="button-paper functional">Add New Program</button>
+                        </Link>
+                    </p>
+                </div>
+            }
             <div className='all-programs-wrapper'>   
                 {folders.length>0 ? folders : <p>No Data passed in</p>}
             </div>

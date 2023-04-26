@@ -19,24 +19,23 @@ const Login = () => {
         const {name, value} = e.target
         setFormdata({
             ...formData, 
-            [name]: value
+            [name]: value.trim()
         })
     }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateLoginForm(formData, setFormErrors)){
-            return
-        }
+        if (!validateLoginForm(formData, setFormErrors)) return
+        setFormErrors({})
         const BASE_URL = "http://127.0.0.1:8000/api/v1"
-        // here i don't use pre configured axios 
+        // here i don't use pre-configured axios 
         // because i need to request to reach to catch error block
-        // so the backend error can be returned and set to be displayed. 
+        // so the backend error can be returned, set and displayed. 
         await axios.post(
-            `${BASE_URL}/login`, 
-            {formData}, 
-            {withCredentials:true}
-        )
+                `${BASE_URL}/login`, 
+                {formData}, 
+                {withCredentials:true}
+            )
             .then(response=>{
                 // console.log(response.data.jwt);
                 navigate('/dash');
@@ -49,11 +48,14 @@ const Login = () => {
                     backendErrors: errorDetails
                 })
             })
+            
     }
     
     const content = (
         <div className="login-form-wrapper">
-            <h3>User Login</h3>
+            <header>
+                <h2>System login</h2>
+            </header>
             <form>
                 <p>
                     <label>Username:</label>
@@ -71,7 +73,7 @@ const Login = () => {
                     <label>Password:</label>
                     {formErrors.password && <span className="error">{formErrors.password}</span>}
                     <input
-                    autoComplete="on"
+                        autoComplete="on"
                         type="password"
                         name="password"
                         placeholder="Password"
@@ -82,7 +84,7 @@ const Login = () => {
                 </p>
                 <BackendError errors={formErrors.backendErrors} />
                 <button className="button-paper right-side" onClick={handleSubmit}>Submit</button>
-                <p>Authorized Personnel only</p>
+                <p className="warn">Authorized Personnel only</p>
             </form>
         </div>
     )
@@ -92,8 +94,6 @@ const Login = () => {
     )
 }
 export default Login
-
-
 
 
 

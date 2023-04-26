@@ -35,7 +35,7 @@ const EditEnrollmentModal = ({onClose, stdt, classesTaken}) => {
 
       axiosBaseURL.put(`/student/detail/${student.id}`, studentObj)
           .then(response=>{
-              console.log(response.data)
+            //   console.log(response.data)
               onClose()
               navigate(`/dash/students/detail/${student.id}`)
           })
@@ -79,11 +79,12 @@ const EditEnrollmentModal = ({onClose, stdt, classesTaken}) => {
                         <div className="cell"><button className="button-paper functional" onClick={handleSubmit} >confirm</button></div>
                     </div>
                     <div className="row">
-                        <div className="cell heading error">Unenroll from:</div>
+                        <div className="cell heading warn">Unenroll from:</div>
                         <div className="cell">
                         {classes.map((clss)=>{
                           return(
-                            <button 
+                            <button
+                                type="button"
                                 key={nanoid()}
                                 onClick={()=>handleDelButtonClick(clss.id)}
                             >
@@ -92,7 +93,7 @@ const EditEnrollmentModal = ({onClose, stdt, classesTaken}) => {
                           )
                         })}
                         </div>
-                        <div className="cell"><button className="button-paper functional" onClick={handleSubmit}>confirm</button></div>
+                        <div className="cell"><button className="button-paper functional" type="button" onClick={handleSubmit}>confirm</button></div>
                     </div>
                     {
                         formErrors.backendErrors &&

@@ -1,3 +1,13 @@
+1. StrictMode
+StrictMode is a tool for highlighting potential problems in an application. Like Fragment, StrictMode does not render any visible UI. It activates additional checks and warnings for its descendants.
+
+2. CSS style 
+it's imported in index.css so the style can be applied to all components
+
+
+
+
+
 import Axios from 'axios';
 const axiosBaseURL = Axios.create({
     baseURL:'api_base_url'

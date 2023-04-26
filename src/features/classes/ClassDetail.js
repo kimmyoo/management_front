@@ -1,13 +1,16 @@
-import { useState, useEffect, useMemo} from 'react'
+import { useState, useEffect, useMemo, useContext} from 'react'
 import { useParams, Link} from 'react-router-dom'
 import { useTable } from 'react-table'
 import { STUDENT_LIST_HEADER } from '../../common/tableheaders'
 import axiosBaseURL from '../../common/httpCommon'
 import EnrollToClass from './EnrollToClass'
 import EditClassModal from './EditClassModal'
+import { UserContext } from '../../components/DashLayout'
+
 
 const ClassDetail = () => {
-    // states
+    // states and context data
+    const user = useContext(UserContext)
     const {licID, clssID } = useParams();
     const [isLoading, setIsLoading] = useState(true)
     const [clss, setClss] = useState({})
@@ -68,7 +71,7 @@ const ClassDetail = () => {
             <h3>PROGRAM: {license.program_repr} ---{clss.code} Class Detail</h3>
             <div className='right-side'>
                 <button className='button-paper functional' onClick={handleOpenEnrollModal}>Enroll Student</button>&emsp;
-                <button className='button-paper functional' onClick={handleOpenEditModal}>Edit Class</button>
+                {user?.is_superuser&&<button className='button-paper functional' onClick={handleOpenEditModal}>Edit Class</button>}
             </div>
             <p className='class-info'>
                 {isLoading ? "loading..." :

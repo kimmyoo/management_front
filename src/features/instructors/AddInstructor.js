@@ -65,7 +65,7 @@ const AddInstructor = () => {
         const {name, value} = e.target;
         setInstructor({
           ...instructor,
-          [name]: value.trim()
+          [name]: value
         })
     };
 

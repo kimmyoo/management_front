@@ -1,12 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import axiosBaseURL from '../../common/httpCommon'
 import StudentProfile from '../../components/StudentProfile'
 // import { Link } from 'react-router-dom'
 import EditStudentModal from './EditStudentModal'
 import EditEnrollmentModal from './EditEnrollmentModal'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../components/DashLayout'
 
 const StudentDetail = () => {
+    const user = useContext(UserContext)
+    const navigate = useNavigate()
     const {stdtID} = useParams()
     const [student, setStudent] = useState({})
     const [classesTaken, setClassesTaken] = useState([])
@@ -24,9 +28,12 @@ const StudentDetail = () => {
             // console.log("student and classes taken obtained successfully")
         })
         .catch(error=>{
+            if (error.response.status===404){
+                navigate("/dash/students")
+            }
             console.error("error", error)
         })
-    },[stdtID, showEditModal, showEnrollModal])
+    },[stdtID, showEditModal, showEnrollModal, navigate])
 
     // modal controls 
     const handleOpenEditModal = () => {
@@ -49,10 +56,13 @@ const StudentDetail = () => {
     const content = (
         <div className='content-wrapper'>
             <h3>Student Profile Page</h3>
-            <div className='right-side'>
-                <button className='button-paper functional' onClick={handleOpenEditModal}>Edit Student</button>&emsp;
-                <button className='button-paper functional' onClick={handleOpenEnrollModal}>Edit Enrollment</button>
+            {
+                user?.is_superuser&&<div className='right-side'>
+                <button type="button" className='button-paper functional' onClick={handleOpenEditModal}>Edit Student</button>&emsp;
+                <button type="button" className='button-paper functional' onClick={handleOpenEnrollModal}>Edit Enrollment</button>
             </div>
+            }
+
             <StudentProfile student={student} classes={classesTaken}/>
             {
                 showEditModal

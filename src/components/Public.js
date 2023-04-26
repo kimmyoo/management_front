@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faRightToBracket } from "@fortawesome/free-solid-svg-icons"
+// import { useNavigate, useLocation } from 'react-router-dom'
 
 const Public = () => {
     const content = (
@@ -19,7 +21,7 @@ const Public = () => {
                 <p>www.abcschool.com</p>
             </main>
             <footer>
-                <Link to="/login">Employee Login</Link>
+                <Link to="/login"><FontAwesomeIcon icon={faRightToBracket} />Login</Link>
             </footer>
         </section>
     )

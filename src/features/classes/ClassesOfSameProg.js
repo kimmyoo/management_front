@@ -11,7 +11,7 @@ const ClassesOfSameProg = () => {
     useEffect(() => {
         axiosBaseURL.get(`/classes/in/program/${programID}`)
         .then(response=>{
-            console.log("successfully obtain classes data")
+            // console.log("successfully obtain classes data")
             setClasses(response.data)
         })
         .catch(error=>{
