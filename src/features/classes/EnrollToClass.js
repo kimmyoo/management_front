@@ -51,7 +51,7 @@ const EnrollToClass = ({ onClose, clss, licID }) => {
         if(!preValidate(formData, setFormErrors)) return
         axiosBaseURL.post('/students/', studentObject)
             .then(response =>{
-                console.log("form submission was successful.")
+                console.log("form submission was successful.", response.data)
                 onClose()
                 navigate(`/dash/classes/${licID}/${clss.id}`)
             })

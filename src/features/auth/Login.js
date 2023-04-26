@@ -27,7 +27,8 @@ const Login = () => {
         e.preventDefault();
         if (!validateLoginForm(formData, setFormErrors)) return
         setFormErrors({})
-        const BASE_URL = "http://127.0.0.1:8000/api/v1"
+        // const BASE_URL = "http://127.0.0.1:8000/api/v1"
+        const BASE_URL = "https://abcschoolmanagement.pythonanywhere.com/api/v1"
         // here i don't use pre-configured axios 
         // because i need to request to reach to catch error block
         // so the backend error can be returned, set and displayed. 

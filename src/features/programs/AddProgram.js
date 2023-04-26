@@ -33,7 +33,7 @@ const AddProgram = () => {
       let errorDetails = [] // for holding backend errors
       axiosBaseURL.post('/programs/', program)
         .then(response => {
-            console.log('Form data submission successful:', response.data)
+            // console.log('Form data submission successful:', response.data)
             navigate("/dash/programs")
         })
         .catch(error=>{

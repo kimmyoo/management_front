@@ -76,7 +76,7 @@ const EditClassModal = ({onClose, cls, license}) => {
         // console.log(classObject)
         axiosBaseURL.put(`/class/detail/${clss.id}`, clss)
             .then(response => {
-                console.log('form submission is successful')
+                console.log('form submission is successful', response.data)
                 onClose()
                 // here remember to change the license to current license#
                 navigate(`/dash/classes/${clss.license}/${clss.id}`)

@@ -31,7 +31,7 @@ const AddInstructor = () => {
       let errorDetails = [] // for holding backend errors
       axiosBaseURL.post('/instructors/', instructor)
         .then(response => {
-            console.log('Form data submission successful:', response.data)
+            // console.log('Form data submission successful:', response.data)
             navigate("/dash/instructors")
         })
         .catch(error=>{

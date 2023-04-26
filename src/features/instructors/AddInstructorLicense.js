@@ -73,8 +73,7 @@ const AddInstructorLicense = () => {
         let errorDetails = [] // for holding backend errors
         axiosBaseURL.post('/licenses/', license)
             .then(response => {
-                console.log()
-                console.log('Form data submission successful:', response.data)
+                // console.log('Form data submission successful:', response.data)
                 navigate("/dash/instructors")
             })
             .catch(error=>{
