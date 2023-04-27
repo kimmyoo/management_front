@@ -4,6 +4,7 @@ import Public from './components/Public'
 import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
+import NotFound from './components/NotFound'
 
 import ProgramList from './features/programs/ProgramList';
 import AddProgram from './features/programs/AddProgram';
@@ -18,7 +19,6 @@ import AllProgramList from './features/classes/AllProgramList';
 import ClassDetail from './features/classes/ClassDetail';
 import ClassesOfSameProg from './features/classes/ClassesOfSameProg';
 
-
 import RecentStudents from './features/students/RecentStudents';
 import StudentDetail from './features/students/StudentDetail';
 import SearchStudent from './features/students/SearchStudent';
@@ -26,52 +26,52 @@ import SearchStudent from './features/students/SearchStudent';
 import ImportPage from './features/import/ImportPage'
 
 
-
 function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index element={<Public />} />
-        <Route path="login" element={<Login />} />
-        
-        <Route path="dash" element={<DashLayout />}>
-          <Route index element={<Welcome />} />
+    return (
+        <Routes>
+            <Route path="/" element={<Layout />}>
+                <Route index element={<Public />} />
+                <Route path="login" element={<Login />} />
 
-          <Route path="programs">
-            <Route index element={<ProgramList />} />
-            <Route path="add" element={<AddProgram />} />
-          </Route>
+                <Route path="dash" element={<DashLayout />}>
+                    <Route index element={<Welcome />} />
 
-          <Route path="instructors">
-            <Route index element={<InstructorList />} />
-            <Route path="add" element={<AddInstructor />} />
-            <Route path="edit" element={<EditInstructor />} />
-            <Route path="add-license" element={<AddInstructorLicense />} />
-            <Route path="schedule" element={<ScheduleClass />} />
-          </Route>
+                    <Route path="programs">
+                        <Route index element={<ProgramList />} />
+                        <Route path="add" element={<AddProgram />} />
+                    </Route>
 
-          <Route path="classes" >
-            <Route index element={<AllProgramList />}/>
-            <Route path=":licID/:clssID" element={<ClassDetail />} />
-            <Route path="in/program/:programID" element={<ClassesOfSameProg/> } />
-            {/* <Route path="classdetail/:classcode/enroll" element={<EnrollToClass />} /> */}
-          </Route>
+                    <Route path="instructors">
+                        <Route index element={<InstructorList />} />
+                        <Route path="add" element={<AddInstructor />} />
+                        <Route path="edit" element={<EditInstructor />} />
+                        <Route path="add-license" element={<AddInstructorLicense />} />
+                        <Route path="schedule" element={<ScheduleClass />} />
+                    </Route>
 
-          <Route path="students">
-            <Route index element={<RecentStudents />} />
-            <Route path="detail/:stdtID" element={<StudentDetail />} />
-            <Route path="search" element={<SearchStudent />} />
-          </Route>
+                    <Route path="classes" >
+                        <Route index element={<AllProgramList />} />
+                        <Route path=":licID/:clssID" element={<ClassDetail />} />
+                        <Route path="in/program/:programID" element={<ClassesOfSameProg />} />
+                        {/* <Route path="classdetail/:classcode/enroll" element={<EnrollToClass />} /> */}
+                    </Route>
 
-          <Route path="import">
-            <Route index element={<ImportPage />}/>
+                    <Route path="students">
+                        <Route index element={<RecentStudents />} />
+                        <Route path="detail/:stdtID" element={<StudentDetail />} />
+                        <Route path="search" element={<SearchStudent />} />
+                    </Route>
 
-          </Route>
+                    <Route path="import">
+                        <Route index element={<ImportPage />} />
 
-        </Route>{/* End Dash */}
-      </Route>
-    </Routes>
-  );
+                    </Route>
+
+                </Route>{/* End Dash */}
+            </Route>
+            <Route path="*" element={<NotFound />} />
+        </Routes>
+    );
 }
 
 export default App;

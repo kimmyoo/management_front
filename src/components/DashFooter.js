@@ -14,12 +14,11 @@ const DashFooter = () => {
 
     const onGoHomeClicked = () => {
         navigate('/dash')
-        // navigate(0)
     }
-        
+
     const logout = () => {
         axiosBaseURL.post('/logout')
-            .then(reponse=>{
+            .then(reponse => {
                 console.log("logged out")
                 navigate('/')
             })
@@ -48,11 +47,11 @@ const DashFooter = () => {
         </button>
     )
 
-    
+
     const content = (
         <footer className="dash-footer">
             <p>{goHomeButton}</p>
-            <p>User:{user?.username}, {user?.is_superuser?"Administrator":"Staff"}</p>
+            <p>User:{user?.username}, {user?.is_superuser ? "Administrator" : "Staff"}</p>
             <p><span className="dash-footer__span">{today}</span></p>
             <p>{logoutButton}</p>
         </footer>

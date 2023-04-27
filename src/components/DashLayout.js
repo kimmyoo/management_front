@@ -1,46 +1,58 @@
 // import { Outlet, useOutletContext} from 'react-router-dom'
 import DashHeader from './DashHeader'
 import DashFooter from './DashFooter'
-import { useState, useEffect, createContext} from 'react'
+import { useState, useEffect, createContext } from 'react'
 import axiosBaseURL from '../common/httpCommon'
-import { Outlet, useOutletContext } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-
-export const UserContext = createContext()
 
 const DashLayout = () => {
-    
-
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState(null)
 
     useEffect(() => {
-        axiosBaseURL.get('/user', 
-        {withCredentials:true})
-            .then(response=>{
+        axiosBaseURL.get('/user',
+            { withCredentials: true })
+            .then(response => {
                 setUser(response.data)
-                // console.log(response.data)
             })
-            .catch(error=>{
+            .catch(error => {
                 console.error("error:", error)
                 // if token expired, user is not authenticated
                 // direct to login page. 
                 if (error.response.status === 403) {
-                    window.location.href = '/login';
+                    setUser(null)
+                    setTimeout(() => {
+                        window.location.href = '/login'
+                    }, 5000)
+                    // window.location.href = '/login';
                 }
             })
     }, [])
 
-    const content = (        
-        <UserContext.Provider value={user}>
-            <DashHeader />
-            <div className="dash-container">
-                {/* context={user} */}
-                <Outlet />
+    let content
+    if (!user) {
+        content = (
+            <div className='content-wrapper'>
+                <h3>You're not logged in, Please login</h3>
+                <h3>Your will be directed to login page in 5s</h3>
+                <Link to="/login">Login</Link>
             </div>
-            {/* user={user} */}
-            <DashFooter /> 
-        </UserContext.Provider>
-    )
+        )
+    }
+    else {
+        content = (
+            <UserContext.Provider value={user}>
+                <DashHeader />
+                <div className="dash-container">
+                    {/* context={user} */}
+                    {user && <Outlet />}
+                </div>
+                {/* user={user} */}
+                <DashFooter />
+            </UserContext.Provider>
+        )
+    }
 
     return (
         content
@@ -49,10 +61,10 @@ const DashLayout = () => {
 
 // export custom hook useUser() so children components 
 // are able to use. 
-export function useUser(){
-    return useOutletContext()
-}
+// export function useUser(){
+//     return useOutletContext()
+// }
 
 
 export default DashLayout
-
+export const UserContext = createContext()

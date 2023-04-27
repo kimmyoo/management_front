@@ -16,9 +16,9 @@ const Login = () => {
     const [formErrors, setFormErrors] = useState({})
 
     const handleInputChange = (e) => {
-        const {name, value} = e.target
+        const { name, value } = e.target
         setFormdata({
-            ...formData, 
+            ...formData,
             [name]: value.trim()
         })
     }
@@ -33,15 +33,20 @@ const Login = () => {
         // because i need to request to reach to catch error block
         // so the backend error can be returned, set and displayed. 
         await axios.post(
-                `${BASE_URL}/login`, 
-                {formData}, 
-                {withCredentials:true}
-            )
-            .then(response=>{
+            `${BASE_URL}/login`,
+            { formData },
+            { withCredentials: true }
+        )
+            .then(response => {
                 // console.log(response.data.jwt);
-                navigate('/dash');
+                // Normally a call to navigate will push a new entry 
+                // into the history stack so the user can click the 
+                // back button to get back to the page. 
+                // If you pass replace: true to navigate then the current entry 
+                // in the history stack will be replaced with the new one.
+                navigate('/dash', { replace: true });
             })
-            .catch(error=>{
+            .catch(error => {
                 console.error("error:", error)
                 const errorDetails = handleBackendError(error)
                 setFormErrors({
@@ -49,9 +54,9 @@ const Login = () => {
                     backendErrors: errorDetails
                 })
             })
-            
+
     }
-    
+
     const content = (
         <div className="login-form-wrapper">
             <header>
@@ -63,8 +68,8 @@ const Login = () => {
                     {formErrors.username && <span className="error">{formErrors.username}</span>}
                     <input
                         name="username"
-                        type="text" 
-                        placeholder="Username"  
+                        type="text"
+                        placeholder="Username"
                         required
                         value={formData.username}
                         onChange={handleInputChange}
@@ -84,7 +89,7 @@ const Login = () => {
                     />
                 </p>
                 <BackendError errors={formErrors.backendErrors} />
-                <button className="button-paper right-side" onClick={handleSubmit}>Submit</button>
+                <button className="button-paper login-submit" onClick={handleSubmit}>Submit</button>
                 <p className="warn">Authorized Personnel only</p>
             </form>
         </div>

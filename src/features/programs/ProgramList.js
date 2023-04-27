@@ -15,14 +15,14 @@ const ProgramList = () => {
             .then(response => {
                 setPrograms(response.data)
             })
-            .catch(error=>{
+            .catch(error => {
                 console.error('error:', error)
             });
     }, [])
 
     // create folder divs using fetched data
     const folders = programs.map((program) =>
-        <ProgramFolder key = {program.id} program={program} />
+        <ProgramFolder key={program.id} program={program} />
     )
 
     // generate content to render
@@ -40,8 +40,8 @@ const ProgramList = () => {
                     </p>
                 </div>
             }
-            <div className='all-programs-wrapper'>   
-                {folders.length>0 ? folders : <p>No Data passed in</p>}
+            <div className='all-programs-wrapper'>
+                {folders.length > 0 ? folders : <p>No Data passed in</p>}
             </div>
         </div>
     )

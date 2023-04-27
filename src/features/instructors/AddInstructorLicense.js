@@ -15,11 +15,11 @@ const AddInstructorLicense = () => {
     const [selectedOption, setSelectedOption] = useState('default')
     const [formErrors, setFormErrors] = useState({})
     const [license, setLicense] = useState({
-      licNum: '',
-      instructor: instructor.id,
-      program: null,
+        licNum: '',
+        instructor: instructor.id,
+        program: null,
     });
-    
+
     useEffect(() => {
         axiosBaseURL
             .get('/programs/')
@@ -29,7 +29,7 @@ const AddInstructorLicense = () => {
             .catch((err) => {
                 console.error("error:", err)
             })
-    },[])
+    }, [])
 
 
     const handleSelectChange = (e) => {
@@ -37,7 +37,7 @@ const AddInstructorLicense = () => {
         setSelectedOption(programId)
         // find corresponding program object
         const foundProgram = programs.find(program => Number(program.id) === Number(programId))
-        setLicense({...license, program: foundProgram ? foundProgram.id : null})
+        setLicense({ ...license, program: foundProgram ? foundProgram.id : null })
     }
 
 
@@ -52,11 +52,11 @@ const AddInstructorLicense = () => {
     const preValidate = () => {
         let errors = {};
         // only instructor.name is required
-        if (!license.licNum.trim()){
-          errors.licNum = 'License Number is required'
+        if (!license.licNum.trim()) {
+            errors.licNum = 'License Number is required'
         }
         // select value cannot be default
-        if (selectedOption === 'default'){
+        if (selectedOption === 'default') {
             errors.program = 'Select at least one program for license'
         }
 
@@ -73,16 +73,16 @@ const AddInstructorLicense = () => {
         let errorDetails = [] // for holding backend errors
         axiosBaseURL.post('/licenses/', license)
             .then(response => {
-                // console.log('Form data submission successful:', response.data)
+                console.log('Form data submission successful:', response.data)
                 navigate("/dash/instructors")
             })
-            .catch(error=>{
+            .catch(error => {
                 console.error('form submission error:', error.response.data)
                 const errorObject = error.response.data // get the error Object return from backend
-                for (const property in errorObject){
-                errorDetails.push(<span>{property}:{errorObject[property]}</span>)
+                for (const property in errorObject) {
+                    errorDetails.push(<span>{property}:{errorObject[property]}</span>)
                 }
-                setFormErrors({...formErrors, backendErrors: errorDetails})
+                setFormErrors({ ...formErrors, backendErrors: errorDetails })
             });
     }
 
@@ -91,44 +91,44 @@ const AddInstructorLicense = () => {
         <div className='form-wrapper'>
             <h3>Add a Teacher License for {instructor.name}</h3>
             <div className='form-container'>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Instructor License Number(*):
-                    {formErrors.licNum && <span className="error">{formErrors.licNum}</span>}
-                </label>
-                <input
-                    name="name"
-                    type="text"
-                    
-                    placeholder="License#"
-                    onChange={handleInputChange}
-                />
-                <label>
-                    License Type: 
-                    {formErrors.program && <span className="error">{formErrors.program}</span>}
-                </label>
-                <p><select name="programs" id="programs" value={selectedOption} onChange = {handleSelectChange} >
-                    <option value="default">Select A Program</option>
-                    {   //populate programs into option tags
-                        programs.map(program => (
-                            <option 
-                                key={nanoid()}
-                                value={program.id}
-                            >
-                                {program.programName}
-                            </option>
-                        ))
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Instructor License Number(*):
+                        {formErrors.licNum && <span className="error">{formErrors.licNum}</span>}
+                    </label>
+                    <input
+                        name="name"
+                        type="text"
+
+                        placeholder="License#"
+                        onChange={handleInputChange}
+                    />
+                    <label>
+                        License Type:
+                        {formErrors.program && <span className="error">{formErrors.program}</span>}
+                    </label>
+                    <p><select name="programs" id="programs" value={selectedOption} onChange={handleSelectChange} >
+                        <option value="default">Select A Program</option>
+                        {   //populate programs into option tags
+                            programs.map(program => (
+                                <option
+                                    key={nanoid()}
+                                    value={program.id}
+                                >
+                                    {program.programName}
+                                </option>
+                            ))
+                        }
+                    </select>
+                    </p>
+                    {
+                        formErrors.backendErrors &&
+                        <div className="error">
+                            {formErrors.backendErrors.map(error => (<p key={nanoid()}>{error}</p>))}
+                        </div>
                     }
-                </select>
-                </p>
-                {
-                formErrors.backendErrors&&
-                <div className="error">
-                    {formErrors.backendErrors.map(error => (<p key={nanoid()}>{error}</p>))}
-                </div>
-                }
-                <p><button className="button-paper functional" type="submit" onClick={handleSubmit}>Submit</button></p>
-            </form>
+                    <p><button className="button-paper functional" type="submit" onClick={handleSubmit}>Submit</button></p>
+                </form>
             </div>
             <Link to="/dash/instructors">Back</Link>
         </div>

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { useContext } from "react"
 import { UserContext } from '../../components/DashLayout'
 
-
 const Welcome = () => {
     const user = useContext(UserContext)
     const content = (
