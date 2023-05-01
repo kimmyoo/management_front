@@ -3,21 +3,23 @@ import axiosBaseURL from "../../common/httpCommon"
 import { useParams } from "react-router-dom"
 import ClassRow from "../../components/ClassRow"
 import { nanoid } from "nanoid"
+import React from 'react';
+
 
 const ClassesOfSameProg = () => {
-    const {programID} = useParams()
+    const { programID } = useParams()
     const [classes, setClasses] = useState([])
 
     useEffect(() => {
         axiosBaseURL.get(`/classes/in/program/${programID}`)
-        .then(response=>{
-            // console.log("successfully obtain classes data")
-            setClasses(response.data)
-        })
-        .catch(error=>{
-            console.error(error)
-        })
-    },[programID])
+            .then(response => {
+                // console.log("successfully obtain classes data")
+                setClasses(response.data)
+            })
+            .catch(error => {
+                console.error(error)
+            })
+    }, [programID])
 
     const content = (
         <div className="content-wrapper">
@@ -31,8 +33,8 @@ const ClassesOfSameProg = () => {
                     <div className="cell heading">license#</div>
                 </div>
                 {
-                    classes.map(clss=>{
-                        return <ClassRow key={nanoid()} clss={clss}/>
+                    classes.map(clss => {
+                        return <ClassRow key={nanoid()} clss={clss} />
                     })
                 }
             </div>

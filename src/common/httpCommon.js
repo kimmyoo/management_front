@@ -1,8 +1,8 @@
 import Axios from 'axios';
 
 const axiosBaseURL = Axios.create({
-    // baseURL:"http://127.0.0.1:8000/api/v1",
-    baseURL: "https://abcschoolmanagement.pythonanywhere.com/api/v1",
+    baseURL: "http://127.0.0.1:8000/api/v1",
+    // baseURL: "https://abcschoolmanagement.pythonanywhere.com/api/v1",
     withCredentials: true
 });
 
@@ -21,9 +21,7 @@ axiosBaseURL.interceptors.response.use(
         // if i added these two lines
         // netlify won't let me go to dashboard..weird. 
         if (error.response.status === 403) {
-            setTimeout(() => {
-                window.location.href = '/login'
-            }, 5000)
+            window.location.href = '/login'
         }
         // reject it for now and let default .catch to handle error
         return Promise.reject(error);

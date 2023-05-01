@@ -3,9 +3,9 @@ import { nanoid } from 'nanoid'
 import { Link } from 'react-router-dom'
 
 
-const StudentProfile = ({student, classes}) => {
-	
-    return (
+const StudentProfile = ({ student, classes }) => {
+
+	return (
 		<div className="table">
 			<div className="row">
 				<div className="cell heading">Student ID:</div>
@@ -13,7 +13,7 @@ const StudentProfile = ({student, classes}) => {
 			</div>
 			<div className="row">
 				<div className="cell heading">Name:</div>
-				<div className="cell">{student.lName}, {student.fName}</div>
+				<div className="cell">{student?.lName}, {student.fName}</div>
 			</div>
 			<div className="row">
 				<div className="cell heading">DOB:</div>
@@ -50,17 +50,17 @@ const StudentProfile = ({student, classes}) => {
 			<div className="row">
 				<div className="cell heading">classes taken:</div>
 				<div className="cell">
-						{classes.map((clss)=>{
-							return(
-								<span key={nanoid()}>
-									<Link
-										to={`/dash/classes/${clss.license}/${clss.id}`}
-									>
+					{classes.map((clss) => {
+						return (
+							<span key={nanoid()}>
+								<Link
+									to={`/dash/classes/${clss.license}/${clss.id}`}
+								>
 									{clss.code}&ensp;
-									</Link>
-								</span>
-							)
-						})}
+								</Link>
+							</span>
+						)
+					})}
 				</div>
 			</div>
 			<div className="row">
@@ -72,7 +72,7 @@ const StudentProfile = ({student, classes}) => {
 				<div className="cell">{student.updatedAt}</div>
 			</div>
 		</div>
-    )
+	)
 }
 
 export default StudentProfile

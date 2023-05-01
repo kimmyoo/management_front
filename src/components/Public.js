@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faRightToBracket } from "@fortawesome/free-solid-svg-icons"
 // import { useNavigate, useLocation } from 'react-router-dom'
+import React from 'react';
 
 const Public = () => {
     const content = (
