@@ -628,10 +628,11 @@ tbody td {
   width: auto;
   height: 70px;
   padding: 2px;
-  margin-right: 10px;
+  margin-right: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
   font-size: 1em;
+  border-radius: 10% 10% 20% 20%;
 }
 
 .male{

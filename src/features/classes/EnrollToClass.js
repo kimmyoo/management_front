@@ -6,7 +6,6 @@ import handleBackendError from '../../common/handleBackendError';
 // import BackendError from '../../components/BackendError';
 import EnrollmentForm from '../../components/EnrollmentForm';
 import { preValidate } from '../../common/studentFormValidation';
-import React from 'react';
 
 const EnrollToClass = ({ onClose, clss, licID }) => {
     const navigate = useNavigate()

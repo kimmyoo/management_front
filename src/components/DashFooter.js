@@ -4,7 +4,6 @@ import { useNavigate, useLocation } from 'react-router-dom'
 import axiosBaseURL from "../common/httpCommon"
 import { useContext } from "react"
 import { UserContext } from "./DashLayout"
-import React from 'react';
 
 const DashFooter = () => {
     const user = useContext(UserContext)

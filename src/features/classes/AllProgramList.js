@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import ProgramFolder from '../../components/ProgramFolder'
 import axiosBaseURL from '../../common/httpCommon'
 import { nanoid } from 'nanoid';
-import React from 'react';
 
 
 const AllProgramList = () => {
@@ -13,13 +12,13 @@ const AllProgramList = () => {
             axiosBaseURL.get('/programs/'),
             axiosBaseURL.get('/tenclasses/in/allprograms/')
         ])
-            .then(response => {
-                setPrograms(response[0].data)
-                setClassList(response[1].data)
-            })
-            .catch(error => {
-                console.error(error)
-            })
+        .then(response => {
+            setPrograms(response[0].data)
+            setClassList(response[1].data)
+        })
+        .catch(error=>{
+            console.error(error)
+        })
     }, [])
 
     const [programs, setPrograms] = useState([])
@@ -31,10 +30,11 @@ const AllProgramList = () => {
             <h3>Recently added classes</h3>
             <div className='all-programs-wrapper'>
                 {programs.map(program => {
-                    const classesOfThisProgram = classList.filter(clss => { return Number(clss.program) === Number(program.id) }
+                    const classesOfThisProgram = classList.filter(clss =>
+                        {return Number(clss.program) === Number(program.id)}
                     )
-                    return <ProgramFolder key={nanoid()} program={program} programClassList={classesOfThisProgram} />
-
+                    return <ProgramFolder key={nanoid()} program={program} programClassList={classesOfThisProgram}/>
+                    
                 })}
             </div>
         </div>

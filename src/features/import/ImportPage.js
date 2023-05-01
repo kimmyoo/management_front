@@ -6,7 +6,6 @@ function ImportPage() {
     const [selectedFile, setSelectedFile] = useState(null)
     const [error, setError] = useState(null)
     const [result, setResult] = useState(null)
-    const [isUploading, setIsUploading] = useState(false)
 
     const handleFileInput = (e) => {
         setSelectedFile(e.target.files[0]);
@@ -14,7 +13,6 @@ function ImportPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        setIsUploading(true)
         const formData = new FormData()
         formData.append('file', selectedFile)
 
@@ -22,20 +20,18 @@ function ImportPage() {
             .then(response => {
                 console.log(response.data)
                 setResult(response.data)
-                setIsUploading(false)
             })
             .catch(error => {
                 setError(error.response.data.error)
                 console.error(error)
-                setIsUploading(false)
             });
     };
 
     const onSubmit = (e) => {
         e.preventDefault()
-        if (!selectedFile) {
+        if(!selectedFile){
             setError("Please Select a CSV File")
-        } else {
+        }else{
             setError(null)
             handleSubmit(e)
         }
@@ -47,12 +43,11 @@ function ImportPage() {
             <form>
                 <input type="file" onChange={handleFileInput} />
                 <p>
-                    <button type="submit" onClick={onSubmit}>Upload</button>
+                    <button type="submit" onClick={onSubmit}>Upload</button> 
                     {error && <span className='error'>{error}</span>}
-                    {isUploading && <span className='warn'>uploading, don't refresh page.</span>}
                 </p>
             </form>
-            <ImportResultDisplay result={result} />
+            <ImportResultDisplay result={result}/>
         </div>
     )
 

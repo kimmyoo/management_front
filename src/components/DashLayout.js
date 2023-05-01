@@ -1,5 +1,4 @@
 // import { Outlet, useOutletContext} from 'react-router-dom'
-import React from 'react';
 import DashHeader from './DashHeader'
 import DashFooter from './DashFooter'
 import { useState, useEffect, createContext } from 'react'
@@ -12,11 +11,12 @@ const DashLayout = () => {
     const [user, setUser] = useState(null)
 
     useEffect(() => {
-        const fetchUser = async () => {
-            try {
-                const response = await axiosBaseURL.get('/user', { withCredentials: true })
+        axiosBaseURL.get('/user',
+            { withCredentials: true })
+            .then(response => {
                 setUser(response.data)
-            } catch (error) {
+            })
+            .catch(error => {
                 console.error("error:", error)
                 // if token expired, user is not authenticated
                 // direct to login page. 
@@ -27,9 +27,7 @@ const DashLayout = () => {
                     }, 5000)
                     // window.location.href = '/login';
                 }
-            }
-        }
-        fetchUser()
+            })
     }, [])
 
     let content

@@ -6,7 +6,6 @@ import axiosBaseURL from '../../common/httpCommon'
 import EnrollToClass from './EnrollToClass'
 import EditClassModal from './EditClassModal'
 import { UserContext } from '../../components/DashLayout'
-import React from 'react';
 
 
 const ClassDetail = () => {

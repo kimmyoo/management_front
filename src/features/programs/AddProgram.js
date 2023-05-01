@@ -2,7 +2,6 @@ import { nanoid } from 'nanoid'
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axiosBaseURL from "../../common/httpCommon";
-import React from 'react';
 
 
 const AddProgram = () => {

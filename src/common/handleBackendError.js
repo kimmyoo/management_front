@@ -1,6 +1,4 @@
 import { nanoid } from "nanoid"
-import React from 'react';
-
 
 const handleBackendError = (error) => {
 
@@ -8,13 +6,13 @@ const handleBackendError = (error) => {
     // console.error('form submission error:', error.response.data)
     let errorObject
 
-    if (error.response) {
+    if (error.response){
         errorObject = error.response.data // get the error Object return from backend
-    } else {
-        errorObject = { "network": "check network connection" }
+    }else{
+        errorObject = {"network": "check network connection"}
     }
-
-    for (const property in errorObject) {
+    
+    for (const property in errorObject){
         errorDetails.push(<span key={nanoid()}>{property}:{errorObject[property]}</span>)
     }
 
