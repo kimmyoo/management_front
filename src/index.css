@@ -154,7 +154,7 @@ select {
   display: flex;
   /* flex-flow: row nowrap; */
   /* justify-content: flex-start; */
-  gap: 1em;
+  gap:.2em;
 }
 
 .dash-footer__button {
@@ -185,6 +185,16 @@ ul li {
     padding: 1px 0;
     float: left;
 }
+
+ol {
+    -moz-column-count: 2;
+    -moz-column-gap: 5px;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 5px;
+    column-count: 2;
+    column-gap: 15px;
+}
+ol li{margin-bottom:10px}
 
 nav {
   height: 50px;
@@ -360,7 +370,7 @@ a:hover::before {
 
 .login-form-wrapper{
     background-color: #2f3a6a;
-    width: 50%;
+    width: 45%;
     height: auto;
     margin: 100px auto;
     padding: 30px;
@@ -489,6 +499,7 @@ input[type=file] {
   font-size: 1em;
   text-align: right;
 }
+
 
 .class-info{
   color:hsl(53, 77%, 50%)
@@ -628,11 +639,8 @@ tbody td {
   width: auto;
   height: 70px;
   padding: 2px;
-  margin-right: 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
+  margin: 10px 5px 5px 10px;
   font-size: 1em;
-  border-radius: 10% 10% 20% 20%;
 }
 
 .male{
@@ -660,16 +668,16 @@ tbody td {
 
 .result-wrapper {
   overflow:hidden;
-  margin:10px;
+  margin:5px 5px;
   background-color: #2f3a6a8a;
-  min-height:550px;
-  margin-right:20px;
+  min-height:570px;
   padding: 1em 1em;
 }
 
 
 
-.search-wrapper input[type=text], 
+.search-wrapper input[type=text],
+.search-wrapper input[type=file],
 .search-wrapper select{
   width: 100%;
   padding: .2em .5em;
@@ -710,17 +718,20 @@ tbody td {
     width:100%;
     padding: 2em 0em;
   }
-  
+
+  .search-wrapper input{
+    width: 100%;
+  }
+
   .right-side{
     font-size: 1em;
   }
 
   .avatar{
-    width: 40%;
+    font-size: .8em;
+    width: 45%;
     height: auto;
-    margin-right: 15px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin: 5px 5px 5px 10px;
   }
 
   .modal-content {
@@ -756,4 +767,5 @@ tbody td {
   .login-submit{
     width: 95%;
   }
+
 }

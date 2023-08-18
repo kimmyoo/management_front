@@ -67,3 +67,15 @@ The values_list() method returns a QuerySet containing tuples:
 <QuerySet [(1,), (2,)]>
 If you are using values_list() with a single field, you can use flat=True to return a QuerySet of single values instead of 1-tuples:
 <QuerySet [1, 2]>
+
+
+
+deployment checklist
+
+django setting:
+1. debug: false
+2. SECURE_SSL_REDIRECT = True
+
+react:
+baseurl: 
+login component base url

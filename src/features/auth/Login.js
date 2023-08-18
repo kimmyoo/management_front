@@ -25,7 +25,9 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!validateLoginForm(formData, setFormErrors)) return
+        if (!validateLoginForm(formData, setFormErrors)) {
+            return
+        }
         setFormErrors({})
         // const BASE_URL = "http://127.0.0.1:8000/api/v1"
         const BASE_URL = "https://abcschoolmanagement.pythonanywhere.com/api/v1"
@@ -50,49 +52,56 @@ const Login = () => {
                 console.error("error:", error)
                 const errorDetails = handleBackendError(error)
                 setFormErrors({
-                    ...formErrors,
-                    backendErrors: errorDetails
+                    backendErrors: errorDetails,
+                    username: "",
+                    password: ""
                 })
             })
-
     }
 
     const content = (
-        <div className="login-form-wrapper">
+        <section className="public">
             <header>
-                <h2>System login</h2>
+                <h2><span className="nowrap">School Management System</span></h2>
             </header>
-            <form>
-                <p>
-                    <label>Username:</label>
-                    {formErrors.username && <span className="error">{formErrors.username}</span>}
-                    <input
-                        name="username"
-                        type="text"
-                        placeholder="Username"
-                        required
-                        value={formData.username}
-                        onChange={handleInputChange}
-                    />
-                </p>
-                <p>
-                    <label>Password:</label>
-                    {formErrors.password && <span className="error">{formErrors.password}</span>}
-                    <input
-                        autoComplete="on"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        required
-                        value={formData.password}
-                        onChange={handleInputChange}
-                    />
-                </p>
-                <BackendError errors={formErrors.backendErrors} />
-                <button className="button-paper login-submit" onClick={handleSubmit}>Submit</button>
-                <p className="warn">Authorized Personnel only</p>
-            </form>
-        </div>
+            <main className="public__main">
+                <div className="login-form-wrapper">
+                    <header>
+                        <h2>System login</h2>
+                    </header>
+                    <form>
+                        <p>
+                            <label>Username:</label>
+                            {formErrors.username && <span className="error">{formErrors.username}</span>}
+                            <input
+                                name="username"
+                                type="text"
+                                placeholder="Username"
+                                required
+                                value={formData.username}
+                                onChange={handleInputChange}
+                            />
+                        </p>
+                        <p>
+                            <label>Password:</label>
+                            {formErrors.password && <span className="error">{formErrors.password}</span>}
+                            <input
+                                autoComplete="on"
+                                type="password"
+                                name="password"
+                                placeholder="Password"
+                                required
+                                value={formData.password}
+                                onChange={handleInputChange}
+                            />
+                        </p>
+                        <BackendError errors={formErrors.backendErrors} />
+                        <button className="button-paper login-submit" onClick={handleSubmit}>Submit</button>
+                        <p className="warn">Authorized Personnel only</p>
+                    </form>
+                </div>
+            </main>
+        </section>
     )
 
     return (

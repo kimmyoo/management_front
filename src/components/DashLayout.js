@@ -25,7 +25,6 @@ const DashLayout = () => {
                     setTimeout(() => {
                         window.location.href = '/login'
                     }, 5000)
-                    // window.location.href = '/login';
                 }
             })
     }, [])
@@ -34,8 +33,7 @@ const DashLayout = () => {
     if (!user) {
         content = (
             <div className='content-wrapper'>
-                <h3>You're not logged in, Please login</h3>
-                <h3>Your will be directed to login page in 5s</h3>
+                <h3>User not authenticated, you will be directed to login page in 5s</h3>
                 <Link to="/login">Login</Link>
             </div>
         )
@@ -45,10 +43,8 @@ const DashLayout = () => {
             <UserContext.Provider value={user}>
                 <DashHeader />
                 <div className="dash-container">
-                    {/* context={user} */}
                     {user && <Outlet />}
                 </div>
-                {/* user={user} */}
                 <DashFooter />
             </UserContext.Provider>
         )
